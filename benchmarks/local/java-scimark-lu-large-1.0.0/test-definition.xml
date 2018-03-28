@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.6.0m2-->
+<PhoronixTestSuite>
+  <TestInformation>
+    <Title>SPECJVM2008 scimark lu large Test</Title>
+    <Description>This benchmark tests the memory subsystem with "large" dataset which stresses the JVMs (32 Mbytes)</Description>
+    <ResultScale>ops/m</ResultScale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>LINE_GRAPH</DisplayFormat>
+    <SubTitle>Java scimark lu large benchmark</SubTitle>
+    <TimesToRun>1</TimesToRun>
+  </TestInformation>
+  <TestProfile>
+    <Version>1.0.0</Version>
+    <SupportedPlatforms>Linux</SupportedPlatforms>
+    <SoftwareType>Utility</SoftwareType>
+    <TestType>java</TestType>
+    <License>Free</License>
+    <Status>Verified</Status>
+    <EnvironmentSize>1.0</EnvironmentSize>
+    <ProjectURL>https://www.spec.org/jvm2008/docs/benchmarks/index.html</ProjectURL>
+    <Maintainer>Amer Ather</Maintainer>
+  </TestProfile>
+</PhoronixTestSuite>

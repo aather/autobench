@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.6.0m2-->
+<PhoronixTestSuite>
+  <TestInformation>
+    <Title>sysbench-cpu</Title>
+    <Description>This benchmark tests cpu compute by varifying prime numbers in the given range</Description>
+    <ResultScale>seconds</ResultScale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>LINE_GRAPH</DisplayFormat>
+    <SubTitle>cpu performance benchmark</SubTitle>
+    <TimesToRun>2</TimesToRun>
+  </TestInformation>
+  <TestProfile>
+    <Version>1.0.0</Version>
+    <SupportedPlatforms>Linux</SupportedPlatforms>
+    <SoftwareType>Utility</SoftwareType>
+    <TestType>cpu</TestType>
+    <License>Free</License>
+    <Status>Verified</Status>
+    <EnvironmentSize>1.0</EnvironmentSize>
+    <ProjectURL>https://github.com/akopytov/sysbench/</ProjectURL>
+    <Maintainer>Amer Ather</Maintainer>
+  </TestProfile>
+</PhoronixTestSuite>

@@ -1,0 +1,22 @@
+[Unit]
+Description=Phoronix Test Suite Phoromatic Client
+After=syslog.target network-online.target
+Documentation=man:phoronix-test-suite(1)
+
+[Service]
+Environment=TEST_RESULTS_NAME="System Benchmark"
+Environment=TEST_RESULTS_IDENTIFIER=$EC2_INSTANCE_TYPE
+Environment=TEST_RESULTS_DESCRIPTION="Various Tests"
+Environment=EXPORT_RESULTS_HTML_EMAIL_TO="aather@netflix.com,amer.ather@gmail.com"
+Environment=EXPORT_RESULTS_HTML_FILE_TO=/efs/amibench/html-results
+Environment=COST_PERF_PER_DOLLAR="100"
+Environment=PUSHOVER_NET_USER="ujhfdbh9iy6bzqfcyvwi8js2iphcnc"
+Environment=PERFORMANCE_PER_WATT=1
+Environment=LINUX_PERF=1
+Environment=MONITOR=1
+TimeoutStartSec=300
+ExecStart=/usr/bin/phoronix-test-suite phoromatic.connect 100.66.41.49:7403/XCUDI4
+
+[Install]
+WantedBy=multi-user.target
+

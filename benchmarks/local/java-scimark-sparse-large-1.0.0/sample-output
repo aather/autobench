@@ -1,0 +1,55 @@
+java -jar SPECjvm2008.jar -ikv -wt 5s -it 240s compiler.compiler
+
+SPECjvm2008 Peak
+  Properties file:   none
+  Benchmarks:        compiler.compiler
+
+  WARNING: Run will not be compliant.
+  Not a compliant sequence of benchmarks for publication.
+  Property specjvm.run.checksum.validation must be true for publication.
+
+
+--- --- --- --- --- --- --- --- ---
+
+  Benchmark:   check
+  Run mode:    static run
+  Test type:   functional
+  Threads:     1
+  Iterations:  1
+  Run length:  1 operation
+
+Iteration 1 (1 operation) begins: Fri May 05 16:50:54 UTC 2017
+Iteration 1 (1 operation) ends:   Fri May 05 16:50:54 UTC 2017
+Iteration 1 (1 operation) result: PASSED
+
+Valid run!
+
+
+--- --- --- --- --- --- --- --- ---
+
+  Benchmark:   compiler.compiler
+  Run mode:    timed run
+  Test type:   multi
+  Threads:     64
+  Warmup:      5s
+  Iterations:  1
+  Run length:  240s
+
+Warmup (5s) begins: Fri May 05 16:50:57 UTC 2017
+Warmup (5s) ends:   Fri May 05 16:51:05 UTC 2017
+Warmup (5s) result: 640.48 ops/m
+
+Iteration 1 (240s) begins: Fri May 05 16:51:05 UTC 2017
+Iteration 1 (240s) ends:   Fri May 05 16:55:06 UTC 2017
+Iteration 1 (240s) result: 5210.70 ops/m
+
+Valid run!
+Score on compiler.compiler: 5210.70 ops/m
+
+Results are stored in: 
+/SPECjvm2008/results/SPECjvm2008.927/SPECjvm2008.927.raw
+Generating reports in:
+/SPECjvm2008/results/SPECjvm2008.927
+
+Noncompliant composite result: 5210.7 ops/m
+

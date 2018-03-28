@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.6.0m2-->
+<PhoronixTestSuite>
+  <ResultsParser>
+    <OutputTemplate>Build Duration: #_RESULT_# seconds
+ </OutputTemplate> 
+    <LineHint>Duration:</LineHint> 
+    <ResultScale>kernel build time (seconds)</ResultScale>
+    <StripFromResult>s</StripFromResult>
+  </ResultsParser>
+</PhoronixTestSuite>

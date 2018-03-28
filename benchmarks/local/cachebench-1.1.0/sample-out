@@ -1,0 +1,16 @@
+Usage: cachebench -rwbtsp [-x #] [-m #] [-d #] [-e #]
+         -r Read benchmark
+         -w Write benchmark
+         -b Read/Modify/Write benchmark
+         -t Use hand tuned versions of the above
+         -s memset() benchmark
+         -p memcpy() benchmark
+         -x Number of measurements to take between powers of 2
+         -m Specify the log base 2 of the available physical memory
+         -d Number of seconds per iteration
+         -e Number of times to repeat test for each vector size
+
+Datatype used is double, 8 bytes
+Defaults if  tty: -rwbsp -x1 -m24 -d5 -e2
+Defaults if file: -b   -x1 -m24 -d5 -e1
+

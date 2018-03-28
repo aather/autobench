@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.6.0m2-->
+<PhoronixTestSuite>
+  <ResultsParser>
+    <OutputTemplate>Operations performed: 104857600 (#_RESULT_# ops/sec) </OutputTemplate>
+    <LineHint>Operations performed:</LineHint> 
+  </ResultsParser>
+</PhoronixTestSuite>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.6.0m2-->
+<PhoronixTestSuite>
+  <TestInformation>
+    <Title>sysbench mysql OLTP </Title>
+    <Description>sysbench OLTP benchmark against mysql database</Description>
+    <ResultScale>TPS</ResultScale>
+    <DisplayFormat>LINE_GRAPH</DisplayFormat>
+    <SubTitle>database Transaction Per Second</SubTitle>
+    <TimesToRun>2</TimesToRun>
+  </TestInformation>
+  <TestProfile>
+    <Version>1.0.0</Version>
+    <SupportedPlatforms>Linux</SupportedPlatforms>
+    <SoftwareType>Utility</SoftwareType>
+    <TestType>database</TestType>
+    <License>Free</License>
+    <Status>Verified</Status>
+    <EnvironmentSize>1.0</EnvironmentSize>
+    <ProjectURL>https://github.com/akopytov/sysbench/</ProjectURL>
+    <Maintainer>Amer Ather</Maintainer>
+  </TestProfile>
+</PhoronixTestSuite>

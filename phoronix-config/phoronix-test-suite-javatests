@@ -1,0 +1,286 @@
+#!/bin/sh
+
+#
+#	Phoronix Test Suite
+#	URLs: http://www.phoronix.com, http://www.phoronix-test-suite.com/
+#	Copyright (C) 2008 - 2016, Phoronix Media
+#	Copyright (C) 2008 - 2016, Michael Larabel
+#	phoronix-test-suite: The Phoronix Test Suite is an extensible open-source testing / benchmarking platform
+#
+#	This program is free software; you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation; either version 3 of the License, or
+#	(at your option) any later version.
+#
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#	GNU General Public License for more details.
+#
+#	You should have received a copy of the GNU General Public License
+#	along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+
+# Full path to root directory of the actual Phoronix Test Suite code
+# export PTS_DIR=$(readlink -f `dirname $0`)
+. /etc/profile.d/netflix_environment.sh
+TS=`date +%Y%m%d`
+INS_TYPE=$(echo $EC2_INSTANCE_TYPE| tr "." "\n")
+INSTANCE=`echo $INS_TYPE|awk '{b=$1 "-" $2; print b}'`
+UNAME=`uname -r`
+KERNEL=`echo $UNAME|sed -e 's/\.//g'`
+CPUS=`lscpu|grep ^CPU\(|awk '{print $2'}`
+
+# Third argument is the test name: pts/stream-1.3.1
+THIRD=$(echo $3| tr "/" "\n")
+# we need only test name: stream-1.3.1. Also remove dots, stream-131
+MYTEST=`echo $THIRD|awk '{print $2}'|sed -e 's/\.//g'`
+export TEST_RESULTS_NAME="javatests-$MYTEST-$INSTANCE-$KERNEL-$TS"
+export TEST_RESULTS_LATEST="javatests-$MYTEST-$INSTANCE-LATEST"
+export TEST_RESULTS_IDENTIFIER="$EC2_INSTANCE_TYPE-$UNAME"
+export TEST_RESULTS_DESCRIPTION="$MYTEST"
+export PTS_DIR=/usr/share/phoronix-test-suite
+export PTS_MODE="CLIENT"
+#export EXPORT_RESULTS_HTML_EMAIL_TO="aather@netflix.com,amer.ather@gmail.com"
+export COST_PERF_PER_DOLLAR="$CPUS"
+#export PUSHOVER_NET_USER="ujhfdbh9iy6bzqfcyvwi8js2iphcnc"
+#export LINUX_PERF=1   
+export MONITOR=cpu.usage.summary,memory.usage	
+#export PERFORMANCE_PER_WATT=1 
+export FLAME_GRAPH="/efs/FlameGraph/"
+export RESULTS_DIR="/efs/amibench/test-results"
+
+DIR="$RESULTS_DIR/$TEST_RESULTS_NAME" 
+if [ -d "$DIR" ];
+then
+ sudo rm -rf $DIR
+fi
+sudo mkdir $DIR
+
+LDIR="$RESULTS_DIR/$TEST_RESULTS_LATEST" 
+if [ -d "$LDIR" ];
+then
+ sudo rm -rf $LDIR
+fi
+sudo mkdir $LDIR
+
+if [ $PTS_DIR != "`pwd`" ]
+then
+	cd $PTS_DIR
+fi
+
+# Run any start-up hooks, such as to pre-seed environment variables or other non-default behaviors / customizations
+if [ -d pts-core/hooks/startup ] && [[ ! "$1" =~ "result-file-to" ]]; 
+then
+	for file in pts-core/hooks/startup/*.sh
+	do
+	   if [ "$1" != "install" ]
+	    then
+		./$file
+	   fi
+	done
+fi
+# Determine PHP binary location
+if [ ! "X$PHP_BIN" = "X" ] && [ -x $PHP_BIN ]
+then
+	export PHP_BIN=$PHP_BIN
+elif [ -x /usr/bin/php7 ] || [ -x /usr/local/bin/php7 ] || [ -x /usr/pkg/bin/php7 ]
+then
+	export PHP_BIN="php7"
+elif [ -x /usr/bin/php5 ] || [ -x /usr/local/bin/php5 ] || [ -x /usr/pkg/bin/php5 ]
+then
+	export PHP_BIN="php5"
+elif [ -x /usr/bin/php ] || [ -x /usr/local/bin/php ] || [ -x /usr/pkg/bin/php ]
+then
+	export PHP_BIN="php"
+elif [ -x /usr/php7/bin/php ]
+then
+	export PHP_BIN="/usr/php7/bin/php"
+elif [ -x /usr/php5/bin/php ]
+then
+	export PHP_BIN="/usr/php5/bin/php"
+elif [ -x /usr/php/bin/php ]
+then
+	export PHP_BIN="/usr/php/bin/php"
+elif [ -x /opt/bin/php ]
+then
+	export PHP_BIN="/opt/bin/php"
+elif [ -x /usr/pkg/libexec/cgi-bin/php ]
+then
+	export PHP_BIN="/usr/pkg/libexec/cgi-bin/php"
+elif which php >/dev/null 2>&1 ;
+then
+	export PHP_BIN="php"
+elif which php7 >/dev/null 2>&1 ;
+then
+	export PHP_BIN="php7"
+elif which php5 >/dev/null 2>&1 ;
+then
+	export PHP_BIN="php5"
+elif [ -x /usr/bin/hhvm ]
+then
+	export PHP_BIN="/usr/bin/hhvm"
+elif which hhvm >/dev/null 2>&1 ;
+then
+	export PHP_BIN="hhvm"
+else
+	export PHP_BIN=""
+fi
+
+# Make sure PHP is installed
+if [ "X$PHP_BIN" = "X" ]
+then
+	cat <<'EOT'
+
+PHP 5.3 or newer must be installed for the Phoronix Test Suite
+The PHP command-line package is commonly called php-cli, php5-cli, or php.
+For more information visit: http://www.phoronix-test-suite.com/
+
+EOT
+
+if [ -x /usr/bin/zypper ]
+then
+	# SUSE / OpenSUSE
+	echo "The command to likely run for your operating system is: "
+	echo "# zypper install php5 php5-zip"
+	echo " "
+elif [ -x /usr/bin/apt-get ]
+then
+	# Debian / Ubuntu Based Systems
+	echo "The command to likely run for your operating system is: "
+	echo "# apt-get install php-cli php-xml"
+	echo " "
+elif [ -x /usr/bin/dnf ]
+then
+	# Modern Fedora
+	echo "The command to likely run for your operating system is: "
+	echo "# dnf install php-cli php-xml"
+	echo " "
+elif [ -x /usr/bin/yum ]
+then
+	# Red Hat / Fedora / etc
+	echo "The command to likely run for your operating system is: "
+	echo "# yum install php-cli php-xml"
+	echo " "
+elif [ -x /usr/bin/pkg_radd ]
+then
+	# BSD
+	echo "The command to likely run for your operating system is: "
+	echo "# pkg_radd php5 php5-json php5-zip php5-dom"
+	echo " "
+elif [ -x /usr/bin/pacman ]
+then
+	# Arch Linux
+	echo "The command to likely run for your operating system is: "
+	echo "# pacman -S php"
+	echo " "
+elif [ -x /usr/local/sbin/pkg ] || [ -x /usr/sbin/pkg ]
+then
+	# DragonFlyBSD and others
+	echo "The command to likely run for your operating system is: "
+	echo "# pkg install php70 php70-dom php70-zip php70-json php70-simplexml"
+	echo " "
+elif [ -x /usr/local/swupd ]
+then
+	# Clear Linux
+	echo "The command to likely run for your operating system is: "
+	echo "# swupd bundle-add os-testsuite-phoronix"
+	echo " "
+elif [ -x /usr/sbin/pkg_add ]
+then
+	# OpenBSD
+	echo "The command to likely run for your operating system is: "
+	echo "# pkg_add php php-zip"
+	echo " "
+elif [ -x /usr/sbin/equo ]
+then
+	# Sabayon
+	echo "The command to likely run for your operating system is: "
+	echo "# equo install dev-lang/php"
+	echo " "
+elif [ -x /usr/bin/xbps-install ] || [ -x /usr/sbin/xbps-install ]
+then
+	# Void Linux
+	echo "The command to likely run for your operating system is: "
+	echo "# xbps-install -Sy php unzip"
+	echo " "
+elif [ -x /usr/sbin/netpkg ]
+then
+	# Zenwalk / Slackware
+	echo "The command to likely run for your operating system is: "
+	echo "# netpkg php"
+	echo " "
+elif [ -x /sbin/apk ]
+then
+	# Alpine Linux
+	echo "The command to likely run for your operating system is: "
+	echo "# apk add php php-dom php-zip php-json"
+	echo " "
+elif [ -x /usr/bin/urpmi ]
+then
+	# OpenMandriva Linux
+	echo "The command to likely run for your operating system is: "
+	echo "# urpmi php-cli"
+	echo " "
+fi
+
+exit
+fi
+
+if [ ! -f pts-core/phoronix-test-suite.php ] && [ -f `dirname $0`/pts-core/phoronix-test-suite.php ]
+then
+	cd `dirname $0`
+fi
+
+# Ensure the user is in the correct directory
+if [ ! -f pts-core/phoronix-test-suite.php ]
+then
+	cat <<'EOT'
+
+To run the Phoronix Test Suite locally you must first change directories to phoronix-test-suite/ 
+or install the program using the install-sh script. For support visit: http://www.phoronix-test-suite.com/
+
+EOT
+exit
+fi
+
+# Command-specific conditions
+case "$1" in
+"test-module" | "debug-module" | "webui")
+	export PTS_IGNORE_MODULES=1
+	;;
+"enterprise-setup")
+	export PTS_SILENT_MODE=1
+	;;
+esac
+
+export PTS_EXT_LAUNCH_SCRIPT_DIR=`mktemp -d 2>/dev/null || mktemp -d -t ptstmp`
+
+# Run The Phoronix Test Suite
+PTS_EXIT_STATUS=8
+while [ $PTS_EXIT_STATUS -eq 8 ]; do
+	$PHP_BIN pts-core/phoronix-test-suite.php $@
+	PTS_EXIT_STATUS=$?
+done
+
+if [ -f $PTS_EXT_LAUNCH_SCRIPT_DIR/web-server-launcher ]
+then
+	chmod +x $PTS_EXT_LAUNCH_SCRIPT_DIR/web-server-launcher
+	exec $PTS_EXT_LAUNCH_SCRIPT_DIR/web-server-launcher
+	rm -f $PTS_EXT_LAUNCH_SCRIPT_DIR/web-server-launcher
+elif [ -f $PTS_EXT_LAUNCH_SCRIPT_DIR/phoromatic-server-launcher ]
+then
+	chmod +x $PTS_EXT_LAUNCH_SCRIPT_DIR/phoromatic-server-launcher
+	exec $PTS_EXT_LAUNCH_SCRIPT_DIR/phoromatic-server-launcher
+	rm -f $PTS_EXT_LAUNCH_SCRIPT_DIR/phoromatic-server-launcher
+fi
+# rm -rf $PTS_EXT_LAUNCH_SCRIPT_DIR
+# my customization
+if [ "$1" != "install" ]
+then
+ sudo cp $DIR/index.html $DIR/result.html
+ sudo php /efs/amibench/phoronix-test-suite/pts-core/phoronix-test-suite.php result-file-to-json $TEST_RESULTS_NAME > $DIR/result.json
+ sudo php /efs/amibench/phoronix-test-suite/pts-core/phoronix-test-suite.php result-file-to-csv $TEST_RESULTS_NAME > $DIR/result.csv
+ sudo php /efs/amibench/phoronix-test-suite/pts-core/phoronix-test-suite.php result-file-to-text $TEST_RESULTS_NAME > $DIR/result.txt
+ sudo cp -r $DIR/* $LDIR
+fi

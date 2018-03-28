@@ -1,0 +1,9 @@
+[Unit]
+Description=Phoronix Batch Testing
+After=syslog.target network-online.target phoromatic-client.target
+
+[Service]
+ExecStart=/usr/share/phoronix-runtests
+
+[Install]
+WantedBy=multi-user.target
