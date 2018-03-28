@@ -48,8 +48,10 @@ sudo cp -r phoronix-config/phoronix-test-suite/ /usr/share/phoronix-test-suite
 # sudo cp phoronix-config/phoromatic-client.service /usr/share/phoromatic-client.service
 # sudo cp phoronix-config/phoromatic-server.service /usr/share/phoromatic-server.service
 
-# copy all benchmarks.  SPECjvm2008 will be installed in root / directory
-java -jar SPECjvm2008_1_01_setup.jar -i silent   
+# To run SPECjvm2008 benchmark, first download it from url: https://www.spec.org/download.html 
+# download it in the same directory where setup.sh script is located
+# Uncomment the line below to install SPECjvm2008. It will be installed in root /specJVM2008 directory
+# sudo java -jar SPECjvm2008_1_01_setup.jar -i silent   
 sudo mkdir -p /var/lib/phoronix-test-suite/test-profiles 
 sudo cp -r benchmarks/* /var/lib/phoronix-test-suite/test-profiles/
 
