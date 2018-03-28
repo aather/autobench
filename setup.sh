@@ -29,14 +29,14 @@ REPORTS="/efs/autobench/test-reports"
 sudo mkdir -p $RESULTS
 sudo mkdir -p $REPORTS
 
-# setup apache server to serve the autobench directory where php scripts and index.php file are located
+# setup apache server to serve the autobench assets: home page: http:/IP-address/AMIBench/index.php
 # sudo cp WEB/* /var/www/html/
 # Provide webserver access to test results and reports
 # sudo ln -s $RESULTS /var/www/html/RESULTS
 # sudo ln -s $REPORTS /var/www/html/REPORTS
 # sudo service apache2 restart
 
-# Setup phoronix-test-suite.
+# autobench uses open source phoronix Test suite to run benchmarks. Setup phoronix-test-suite.
 sudo cp autobench_environment.sh /etc/autobench_environment.sh
 sudo cp phoronix-config/phoronix-test-suite.xml /etc/phoronix-test-suite.xml
 sudo cp phoronix-config/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-cputests
@@ -48,10 +48,11 @@ sudo cp -r phoronix-config/phoronix-test-suite/ /usr/share/phoronix-test-suite
 # sudo cp phoronix-config/phoromatic-client.service /usr/share/phoromatic-client.service
 # sudo cp phoronix-config/phoromatic-server.service /usr/share/phoromatic-server.service
 
-# To run SPECjvm2008 benchmark, first download it from url: https://www.spec.org/download.html 
-# download it in the same directory where setup.sh script is located
+# To run SPECjvm2008 java benchmarks, download it from the url: https://www.spec.org/download.html 
+# Make sure to download into the same directory where this (setup.sh) script is located
 # Uncomment the line below to install SPECjvm2008. It will be installed in root /specJVM2008 directory
 # sudo java -jar SPECjvm2008_1_01_setup.jar -i silent   
+# install all benchmarks
 sudo mkdir -p /var/lib/phoronix-test-suite/test-profiles 
 sudo cp -r benchmarks/* /var/lib/phoronix-test-suite/test-profiles/
 
