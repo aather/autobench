@@ -55,5 +55,7 @@ sudo cp -r phoronix-config/phoronix-test-suite/ /usr/share/phoronix-test-suite
 sudo mkdir -p /var/lib/phoronix-test-suite/test-profiles 
 sudo cp -r benchmarks/* /var/lib/phoronix-test-suite/test-profiles/
 
-# copy test results for demo purposes only. 
-sudo cp -r sample-test-results/* $RESULTS
+# copy test reports for demo purposes. 
+sudo cp -r sample-test-reports/autobench-reports.tar.gz $REPORTS
+sudo gunzip $REPORTS/autobench-reports.tar.gz
+sudo tar -xvf $REPORTS/autobench-reports.tar
