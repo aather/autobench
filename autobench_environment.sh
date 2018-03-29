@@ -1,4 +1,5 @@
-EC2_INSTANCE_TYPE="r3.xlarge"
+#EC2_INSTANCE_TYPE="r3.xlarge"
+EC2_INSTANCE_TYPE=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
 TS=`date +%Y%m%d%H%M`
 INS_TYPE=$(echo $EC2_INSTANCE_TYPE| tr "." "\n")
 INSTANCE=`echo $INS_TYPE|awk '{b=$1 "-" $2; print b}'`

@@ -3,14 +3,20 @@ DIR=$PWD
 
 RESULTS="/efs/autobench/test-results"
 REPORTS="/efs/autobench/test-reports"
-#
+#---------------------------------
 # All benchmark results should be dumped into shared NFS mounted directory 
 # autobench is setup to dump benchmark results into a dir: /efs/autobench/test-results
 # If you decide to change the above directory path, update two files belows:
 # /etc/phoronix.xml file
 # Look for pattern: <ResultsDirectory>/efs/autobench/test-results</ResultsDirectory>
-# /etc/autobench_environment
+# /etc/autobench_environment.sh
 # Look for pattern: export RESULTS_DIR="/efs/autobench/test-results"
+#--------------------------------
+#
+# If you are not running in AWS cloud, then update file:
+# /etc/autobench_environment.sh
+# uncomment line: #EC2_INSTANCE_TYPE="r3.xlarge" 
+# comment out line: EC2_INSTANCE_TYPE=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
 #
 # install required packages
 sudo apt-get update
@@ -45,8 +51,8 @@ sudo service apache2 restart
 sudo cp autobench_environment.sh /etc/autobench_environment.sh
 sudo cp phoronix-config/phoronix-test-suite.xml /etc/phoronix-test-suite.xml
 sudo cp phoronix-config/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-cputests
-sudo cp phoronix-config/phoronix-test-suite-memtests /usr/bin/phoronix-test-suite-memtests
-sudo cp phoronix-config/phoronix-test-suite-javatests /usr/bin/phoronix-test-suite-javatests
+sudo ln -s /usr/bin/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-memtests
+sudo ln -s /usr/bin/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-javatests
 sudo cp phoronix-config/phoromatic-runtests.service /usr/share/phoromatic-runtests.service
 sudo cp phoronix-config/phoronix-runtests /usr/share/phoronix-runtests
 sudo cp -r phoronix-config/phoronix-test-suite/ /usr/share/phoronix-test-suite
