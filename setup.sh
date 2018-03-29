@@ -34,7 +34,7 @@ sudo mkdir -p $REPORTS
 sudo cp -r WEB/* /var/www/html/
 cd /var/www/html/AMIbench
 # create and papulate SQLite db file AMIbench.sqlite into web directory
-sudo php ./db.sh
+sudo php ./db.php
 cd $DIR
 # setup path for webserver to access test results and test reports
 sudo ln -s $RESULTS /var/www/html/RESULTS
