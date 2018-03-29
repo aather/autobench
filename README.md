@@ -1,4 +1,4 @@
-[AutoBench](performance-meter.jpg)
+![AutoBench](performance-meter.jpg)
 
 ## AutoBench Features
 
