@@ -15,7 +15,7 @@
 - Updated benchmark results are accessed via autobench home page: http://IP_Address/AMIbench/index.php
 
 ## AutoBench Design
-AutoBench is built upon an open source phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use benchmarks, called test profiles, available for running standard benchmarks like: openssl, 7zipcompression, stream etc.. Framework is extensible that allows easy integration of custom benchmarks. Test profiles are installed in directory:/var/lib/phoronix-test-suite/test-profiles. Each test profile is consist of four files:
+AutoBench is built using open source phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use benchmarks, called **test profiles**, available for running standard benchmarks like: openssl, 7zipcompression, stream etc.. Framework is extensible that allows easy integration of custom benchmarks. Test profiles are installed in directory:**/var/lib/phoronix-test-suite/test-profiles**. Each test profile is consist of four files:
 - **downloads.xml (optional):**  instruction on downloading benchmark source code or binaries 
 - **install.sh:**  install instructions. This converts it into shell to run your test with options
 - **test-definition.xml:** information about number of iterations, build dependencies,default options, measurement Unit, supported OS, version etc.. is provided
