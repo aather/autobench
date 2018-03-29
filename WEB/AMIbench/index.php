@@ -184,14 +184,14 @@ HEAD;
     <div class="row row-header">
       <div class="col-xs-3">
       <!-- <img src="/AMIbench/img/benchmark-logo-wing.png" width="300"> -->
-      <img src="http://www.psdgraphics.com/wp-content/uploads/2015/09/performance-meter.jpg" class="img-responsive">
+      <img src="/AMIbench/img/performance-meter.jpg" class="img-responsive">
       </div>
 	<div class="col-xs-9">
-	<p><b><font color="blue">AutoBench</font></b> is a framework for running benchmarks and reporting results in an automated fashion. Autobench generated results are useful for comparing performance of various AWS cloud <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes" target="_blank">instances </a> and identifying regression trends across baseAMI releases.  
+	<p><b><font color="blue">AutoBench</font></b> is a framework for running benchmarks and reporting results in an automated fashion. Autobench generated results are useful for comparing performance of various AWS cloud <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes" target="_blank">instances </a> and identifying regression trends across software releases.  
 <p>
 Benchmarks can be executed manually, however, running them as part of some CI/CD (Continues Integration and Deployment) platoform will make the process more automated. At Netflix, we use <a href="https://spinnaker.prod.netflix.net/#/applications/amibenchclient/executions" target="_blank">spinnikar</a>, that integrates well with <a href="https://www.tutorialspoint.com/jenkins/jenkins_overview.htm" target="_blank">Jenkins</a> and <a href="https://git-scm.com/" target="_blank">Git</a>, for running benchmarks. Spinnaker deployment platform launches popular AWS instances whenever BaseAMI is promoted to candidate. Each instance launched runs cpu, memory, SPECjvm2008 benchmarks and dumps results into a shared <a href=https://aws.amazon.com/efs/faq/" target=_blank">EFS</a> (NFS) mounted directly. Cron job runs once a week to process benchmark results and update links. Once the CI/CD pipeline is setup, new benchmarks are executed and new reports are generated without manual intervension. Updated results can be accessed by visiting autobench home page: http://IP-Address/AMIbench/index.php.
 <p>
-<i>In addition to performance comparison and regression information, AWS instance features, stored in <a href="https://sqlite.org/about.html" target="_blank">SQLite</a> database, are also displayed.</i> 
+<i>In addition to performance comparison and regression information, AWS instance features stored in <a href="https://sqlite.org/about.html" target="_blank">SQLite</a> database are also displayed.</i> 
      </div>
  </div>
 </div>
@@ -199,7 +199,7 @@ Benchmarks can be executed manually, however, running them as part of some CI/CD
     <div class="container-fluid">
       <div class="row row-content">
         <div class="col-xs-2">
-         <img src="https://alssl.askleomedia.com/wp-content/uploads/2009/01/cpu.jpg" class="img-responsive"> <h4>CPU Benchmarks</h4>
+         <img src="/AMIbench/img/cpu.jpg" class="img-responsive"> <h4>CPU Benchmarks</h4>
         </div>
        <div class="col-xs-10">
             <div class="table-responsive">
@@ -257,7 +257,7 @@ Benchmarks can be executed manually, however, running them as part of some CI/CD
         </div>
         <div class="row row-content">
             <div class="col-xs-2">
-                <img src="http://previews.123rf.com/images/alexlmx/alexlmx1509/alexlmx150900283/45643576-2-Gb-RAM-or-ROM-memory-chip-for-smartphone-and-tablet-concept-Stock-Photo.jpg" class="img-responsive"><h4>MEM Benchmarks</h4>
+                <img src="/AMIbench/img/memory.jpg" class="img-responsive"><h4>MEM Benchmarks</h4>
             </div>
             <div class="col-xs-10">
             <div class="table-responsive">
@@ -303,7 +303,7 @@ td> <td>Measures server memory bandwidth performance by performing various memor
         </div>
             <div class="row row-content">
             <div class="col-xs-2">
-                <img src="http://previews.123rf.com/images/funkypoodle/funkypoodle0806/funkypoodle080600013/3184844-Network-connection-plug-close-up-Stock-Photo.jpg" class="img-responsive"><h4>Network Benchmarks</h4>
+                <img src="/AMIbench/img/network.jpg" class="img-responsive"><h4>Network Benchmarks</h4>
             </div>
             <div class="col-xs-10">
 	     <div class="table-responsive">
@@ -335,7 +335,7 @@ td> <td>Measure network throughput <u><i> More is better</i></u></td>
         </div>
             <div class="row row-content">
             <div class="col-xs-2">
-                <img src="https://images-na.ssl-images-amazon.com/images/G/01/electronics/detail-page/B0037NYKW6.app.2tb.jpg" class="img-responsive"><h4>Storage Benchmarks</h4>
+                <img src="/AMIbench/img/storage.jpg" class="img-responsive"><h4>Storage Benchmarks</h4>
             </div>
             <div class="col-xs-10">
 		<div class="table-responsive">
@@ -362,7 +362,7 @@ td> <td>Measure network throughput <u><i> More is better</i></u></td>
         </div>
       <div class="row row-content">
             <div class="col-xs-2">
-                <img src="https://www.uwc.ac.za/Faculties/EMS/SOG/PublishingImages/online-application.jpg" class="img-responsive"><h4>Application Benchmarks</h4>
+                <img src="/AMIbench/img/app.jpg" class="img-responsive"><h4>Application Benchmarks</h4>
             </div>
             <div class="col-xs-10">
                 <div class="table-responsive">

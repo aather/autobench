@@ -10,13 +10,16 @@ CPUS=`lscpu|grep ^CPU\(|awk '{print $2'}`
 THIRD=$(echo $3| tr "/" "\n")
 # we need only test name: stream-1.3.1. Also remove dots, stream-131
 MYTEST=`echo $THIRD|awk '{print $2}'|sed -e 's/\.//g'`
-if [ $0 = "/usr/bin/phoronix-test-suite-cputests" ] then
+if [ $0 = "/usr/bin/phoronix-test-suite-cputests" ] 
+then
   export TEST_RESULTS_NAME="cputests-$MYTEST-$INSTANCE-$KERNEL-$TS"
   export TEST_RESULTS_LATEST="cputests-$MYTEST-$INSTANCE-LATEST"
-elif [ $0 = "/usr/bin/phoronix-test-suite-memtests" ] then
+elif [ $0 = "/usr/bin/phoronix-test-suite-memtests" ] 
+then
   export TEST_RESULTS_NAME="memtests-$MYTEST-$INSTANCE-$KERNEL-$TS"
   export TEST_RESULTS_LATEST="memtests-$MYTEST-$INSTANCE-LATEST"
-elif [ $0 = "/usr/bin/phoronix-test-suite-javatests" ] then
+elif [ $0 = "/usr/bin/phoronix-test-suite-javatests" ] 
+then
   export TEST_RESULTS_NAME="javatests-$MYTEST-$INSTANCE-$KERNEL-$TS"
   export TEST_RESULTS_LATEST="javatests-$MYTEST-$INSTANCE-LATEST"
 else
