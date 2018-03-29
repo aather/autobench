@@ -21,13 +21,14 @@ AutoBench is built using open source phoronix test suite http://phoronix-test-su
 - **test-definition.xml:** information about number of iterations, build dependencies, default options, measurement unit, supported OS, version etc.. is provided
 - **results-definition.xml:** Benchmark output is filtered via unique pattern that fetches key metrics
 
-Phoronix test suite is bundled with sensors of monitors for capturing various metrics during benchmark:
-- **cpu monitor: cpu usage
-- **memory monitor: memory usage
-- **storage monitor: storage throughput and iops 
-- **Linux perf and Flame Graph  monitor: Linux perf metrics and flamegraph for highlighting hot cpu function
-- **performance/cost monitor: Calculate performance per dollar. You can replace dollar with other unit like: cpu, memory etc..
-See **documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
+Phoronix test suite is bundled with sensors or monitors for capturing useful metrics during benchmark:
+- **cpu monitor:** cpu usage
+- **memory monitor:** memory usage
+- **storage monitor:** storage throughput and iops 
+- **Linux perf and Flame Graph  monitors:** Linux perf metrics and flamegraph for highlighting hot cpu function
+- **performance/cost monitor:** Calculate performance per dollar. You can replace dollar with other units like: cpu, memory etc..
+
+**Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
 
 ## AutoBench Setup
 - set
