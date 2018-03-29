@@ -1,4 +1,5 @@
 #! /bin/bash
+DIR=$PWD
 
 RESULTS="/efs/autobench/test-results"
 REPORTS="/efs/autobench/test-reports"
@@ -30,7 +31,11 @@ sudo mkdir -p $RESULTS
 sudo mkdir -p $REPORTS
 
 # setup apache server to serve the autobench assets: home page: http:/IP-address/AMIBench/index.php
-sudo cp WEB/* /var/www/html/
+sudo cp -r WEB/* /var/www/html/
+cd /var/www/html/AMIbench
+# create and papulate SQLite db file AMIbench.sqlite into web directory
+sudo php ./db.sh
+cd $DIR
 # setup path for webserver to access test results and test reports
 sudo ln -s $RESULTS /var/www/html/RESULTS
 sudo ln -s $REPORTS /var/www/html/REPORTS
@@ -59,4 +64,5 @@ sudo cp -r benchmarks/* /var/lib/phoronix-test-suite/test-profiles/
 sudo cp -r sample-test-reports/autobench-reports.tar.gz $REPORTS
 cd $REPORTS
 sudo gunzip autobench-reports.tar.gz
-sudo tar -xvf autobench-reports.tar
+sudo tar -xf autobench-reports.tar
+cd $DIR
