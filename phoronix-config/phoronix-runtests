@@ -1,5 +1,4 @@
 #!/bin/bash
-. /etc/autobench_environment.sh
 
 # CPU TESTS
 sudo /usr/bin/phoronix-test-suite-cputests install Test pts/encode-mp3-1.5.0

@@ -31,7 +31,7 @@
       <SaveInstallationLogs>FALSE</SaveInstallationLogs>
       <SaveTestLogs>FALSE</SaveTestLogs>
       <RemoveTestInstallOnCompletion></RemoveTestInstallOnCompletion>
-      <ResultsDirectory>/efs/amibench/test-results</ResultsDirectory>
+      <ResultsDirectory>/efs/autobench/test-results</ResultsDirectory>
       <AlwaysUploadResultsToOpenBenchmarking>FALSE</AlwaysUploadResultsToOpenBenchmarking>
       <AutoSortRunQueue>TRUE</AutoSortRunQueue>
     </Testing>
@@ -64,7 +64,7 @@
       <Password></Password>
       <WebSocketPort>7401</WebSocketPort>
       <AdvertiseServiceZeroConf>TRUE</AdvertiseServiceZeroConf>
-      <PhoromaticStorage>/efs/amibench/storage/</PhoromaticStorage>
+      <PhoromaticStorage>/efs/autobench/storage/</PhoromaticStorage>
     </Server>
   </Options>
 </PhoronixTestSuite>
