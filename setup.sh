@@ -3,7 +3,7 @@
 DIR=$PWD
 RESULTS="/efs/autobench/test-results"
 WEBDIR="/var/www/html"
-REPORTS="$WEBDIR/AMIBench/test-reports"
+REPORTS="$WEBDIR/AMIbench/test-reports"
 #---------------------------------
 # All benchmark results should be dumped into shared NFS mounted directory 
 # autobench is setup to dump benchmark results into a dir: /efs/autobench/test-results
