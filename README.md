@@ -74,8 +74,8 @@ Autobench reporting is managed by **config.ini** file. All autobench scripts inc
 **cacheresults.php** can be run manually or via cron to process benchmark results specified in the **config.ini** file. Results are merged using phoronix utility. Graphs are generated via phpgraph library.
 
 - Compare AWS instances performance within the same family (m5,c4,d2,i3..)
-[!Autobench](instfamily.png)
+![Autobench](instfamily.png)
 - Compare AWS instance types performance across AWS families(xlarge,2xlarge,4xlarge..)
-[!Autobench](instfamily.png)
+![Autobench](instfamily.png)
 - Find regression trends by comparing benchmark results from multiple runs on the same instance (m4.2xl,c4.8xl..)
-[!Autobench](instregression.png)
+![Autobench](instregression.png)
