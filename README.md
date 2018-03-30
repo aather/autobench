@@ -18,7 +18,7 @@
 AutoBench is built using open source phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use benchmarks, called **test profiles**, available for running standard benchmarks like: openssl, 7zip-compress, Stream etc.. Framework is extensible that allows easy integration of custom benchmarks. Test profiles are stored in directory:**/var/lib/phoronix-test-suite/test-profiles**. Each test profile is configured using four files listed below:
 - **downloads.xml (optional):**  instruction on downloading benchmark source code or binaries 
 - **install.sh:** instructions on compiling, if required,  and installing benchmark 
-- **test-definition.xml:** information about number of iterations, build dependencies, default options, measurement unit, supported OS, version etc.. is provided
+- **test-definition.xml:** Type of information provided in this file: Number of iterations, build dependencies, test descritpion, default options, measurement unit, supported OS, version etc..
 - **results-definition.xml:** Benchmark output is filtered via unique pattern that fetches key metrics
 
 Phoronix test suite is bundled with sensors or monitors for capturing useful metrics during benchmark run:
@@ -38,15 +38,22 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 
 ## AutoBench Setup
 
-- **setup.sh** script is provided to configure autobench. Script will install required packages. It is recommended to review **setup.sh" script and, if possible, install it in a virtualbox VM, to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting url: http://ipaddress/AMIbench/index.php after setup is finished.
-Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
+- $git clone https://github.com/aather/autobench.git
+- Run**setup.sh** script. Script will install required packages and configure autobench environment. It is recommended to review **setup.sh" script and, if possible, install it in a virtualbox VM, to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting url: http://ipaddress/AMIbench/index.php after setup is completed.
+
+**Caution:** Update autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
 
 ## Autobench Benchark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
 
-Example: You can install and run **compress-7zip** benchmark by: 
+Example: To run a single benchmark **compress-7zip**, do the following: 
+
   **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
   **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
+
+As mentioned earlier, all benchmarks are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run the above commands, tests will be installed in directory **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
+
+Type of benchmarks available:
 
 - **cpu benchmarks:** encode-mp3, ffmpeg, openssl, compress-7zip, sysbench-cpu, lmbench-mhz, kernel-build,
 - **memory benchmarks:** cachebench, stream, stream-singlecpu,sysbench-mem,lmbench-mem, lmbench-bw
