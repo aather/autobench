@@ -25,7 +25,7 @@ Phoronix test suite is bundled with sensors or monitors for capturing useful met
 - **cpu monitor:** cpu usage
 - **memory monitor:** memory usage
 - **storage monitor:** storage throughput 
-- **Linux perf and Flame Graph  monitors:**Linux perf metrics and flamegraph for highlighting hot cpu functions
+- **Linux perf and Flame Graph  monitors:** Linux perf metrics and flamegraph for highlighting hot cpu functions
 - **performance/cost monitor:** Calculate performance per dollar. You can replace dollar with other units like: cpu, memory etc..
 
 **Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
