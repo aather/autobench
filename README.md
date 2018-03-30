@@ -72,7 +72,7 @@ For proper testing, I propose:
   - Once "config.ini" file is setup, process benchmark results using "**cacheresults.php**" script located in dir: **$WEBDIR/AMIbench**
   - You can now access updated results by visiting autobench home page: http://ip-address/AMIbench/index.php
 
-**Tip:** For quick updating the file, consider using vi regex: **:%s/family/;family/g** and then uncomment entries that apply.
+**Tip:** For quick updating "config.ini" file, consider using vi regex: **:%s/family/;family/g** and then uncomment entries that apply.
 
 ## Autobench Benchmark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
