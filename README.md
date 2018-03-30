@@ -28,7 +28,8 @@ Type of benchmarks available:
 - **cpu benchmarks:** encode-mp3, ffmpeg, openssl, compress-7zip, sysbench-cpu, lmbench-mhz, kernel-build,
 - **memory benchmarks:** cachebench, stream, stream-singlecpu,sysbench-mem,lmbench-mem, lmbench-bw
 - **SPECjvm2008 benchmarks:** scimark-fft-large, cryto-aes, derby, compress, mpegaudio ...
-![Autobench](cpu-memory-benchmarks.png)
+
+![Autobench](cpu-mem-benchmarks.png)
 
 Phoronix test suite is bundled with sensors or monitors for capturing useful metrics during benchmark run:
 - **cpu monitor:** cpu usage
