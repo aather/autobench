@@ -44,7 +44,7 @@ Make sure to edit autobench environment file **/etc/autobench_environment.sh** i
 ## Autobench Benchark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
 
-Eexample: You can install and executed **compress-7zip** benchmark by running: 
+Example: You can install and run **compress-7zip** benchmark by: 
   **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
   **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
 
