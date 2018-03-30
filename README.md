@@ -30,11 +30,11 @@ Phoronix test suite is bundled with sensors or monitors for capturing useful met
 
 **Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
 
-All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories. For example:
-- **cputests-openssl-190-i2-xlarge-LATEST:** Latest iteration of openssl cpu benchmark ran on AWS i2.xlarge instance
-- **cputests-openssl-190-m3-medium-440-96-generic-201803291856:** All previous iterations of the same test with date stamp 
+All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories. For example directories:
+- **cputests-openssl-190-i2-xlarge-LATEST:** Latest iteration of openssl cpu benchmark ran on AWS i2.xlarge instance 
+- **cputests-openssl-190-i2-xlarge-440-96-generic-201803291856:** All previous iterations of the same test ran on i2.xlarge instance with date stamp 
 
-memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use similar directory names. Each test directory contains benchmark results in format: **json, txt, css and svg**
+memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use similar directory names. Results are stored in **json, txt, css and svg** format.
 
 ## AutoBench Setup
 
