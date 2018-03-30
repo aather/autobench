@@ -69,10 +69,10 @@ For proper testing, I propose:
   - Comment out instance families that are not tested. If you don't have more than one instance from each family, then comment out all entries under "**instFamily to compare**" section since there is nothing to compare.
   - Comment out instances that are not tested under the section "**InstRegression**" 
   - There are two lines per benchmark test. Comment out benchmark tests that you did not run
+  - Once "config.ini" file is setup, process benchmark results using "**cacheresults.php**" script located in dir: **$WEBDIR/AMIbench**
+  - You can now access updated results by visiting autobench home page: http://ip-address/AMIbench/index.php
 
 **Tip:** For quick updating the file, consider using vi regex: **:%s/family/;family/g** and then uncomment entries that apply.
-
-Once "config.ini" file is setup, process benchmark results using "**cacheresults.php**" script located in dir: **$WEBDIR/AMIbench**
 
 ## Autobench Benchmark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
