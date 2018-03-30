@@ -65,7 +65,7 @@ For proper testing, I propose:
 - Ideally, all instances should dump benchmark results into NFS mounted shared directory. Otherwise, copy all results into a common directory on a webserver. Default directory is: /efs/autobench/test-results
 - To process results, edit '**config.ini**' file in directory $WEBDIR/AMIbench. 
 - Comment out (;) lines that do not apply.  For example:
-  - Comment out instance types that are not tested. If you don't have more than one instances of the same type (xl) from different families then comment out all entries under "**instTypes to compare**" section since there is nothing to compare 
+  - Comment out instance types that are not tested. If you don't have more than one instance of the same type (xl) from different families then comment out all entries under "**instTypes to compare**" section since there is nothing to compare 
   - Comment out instance families that are not tested. If you don't have more than one instance from each family, then comment out all entries under "**instFamily to compare**" section since there is nothing to compare.
   - Comment out instances that are not tested under the section "**InstRegression**" 
   - There are two lines per benchmark test. Comment out benchmark tests that you did not run
