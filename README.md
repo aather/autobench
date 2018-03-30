@@ -38,8 +38,12 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 
 ## AutoBench Setup
 
-- $git clone https://github.com/aather/autobench.git
-- Run**setup.sh** script. Script will install required packages and configure autobench environment. It is recommended to review **setup.sh" script and, if possible, install it in a virtualbox VM, to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting url: http://ipaddress/AMIbench/index.php after setup is completed.
+- $ git clone https://github.com/aather/autobench.git
+- $ cd autobench; ./setup.sh 
+
+**setup.sh** Script installs all required packages and configure autobench environment. It is recommended to review **setup.sh" script and, if possible, install it in a virtualbox VM, to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting:
+
+ **http://ipaddress/AMIbench/index.php**
 
 **Caution:** Update autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
 
