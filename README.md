@@ -30,7 +30,7 @@ Phoronix test suite is bundled with sensors or monitors for capturing useful met
 
 **Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
 
-All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories wistring like:
+All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories. For example:
 - **cputests-openssl-190-i2-xlarge-LATEST:** Latest iteration of openssl cpu benchmark ran on AWS i2.xlarge instance
 - **cputests-openssl-190-m3-medium-440-96-generic-201803291856:** All previous iterations of the same test with date stamp 
 
