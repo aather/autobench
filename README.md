@@ -59,12 +59,12 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 **Caution:** Update autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
 
 For proper testing, I propose:
-- Setting up few AWS instance types (medium,large,xlarge) from different families (m4,i3,t2..) 
-- Executing all benchmarks by running: /usr/share/phoronix.runtests
+- Set up few AWS instance types (medium,large,xlarge) from different families (m4,i3,t2..) 
+- Execute all benchmarks by running: /usr/share/phoronix.runtests
 - Run benchmarks multiple times in order to have few sets available to perform useful comparison 
-- Ideally, all instances running benchmarks should dump to NFS mounted shared directory. Otherwise, copy all results into a common directory, /efs/autobench/test-results (default) on a webserver
+- Ideally, all instances should dump benchmark results to NFS mounted shared directory. Otherwise, copy all results into a common directory, /efs/autobench/test-results (default) on a webserver
 - Now edit '**config.ini**' file located in directory $WEBDIR/AMIbench. 
-- Comment out (;) lines that do not apply.  For example
+- Comment out (;) lines that do not apply.  For example:
   - Comment out instance types that you have not tested. If you don't have multiple instance of same type (xl), then comment out all entries under "**instTypes to compare**" section since there is nothing to compare 
   - Comment out instance families that you have not tested. If you have only one instance from each family, then
 comment out all entries under "**instFamily to compare**" section since there is nothing to compare
