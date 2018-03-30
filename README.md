@@ -38,12 +38,13 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 
 ## AutoBench Setup
 
-- **setup.sh" script is provided to setup autobench. Script will install required packages. It is recommended to install in virtualbox VM. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting url: http://ipaddress/AMIbench/index.php
-- After **setup.sh** is finished. You can run benchmarks by executing: /usr/share/phoronix.runtest. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
+- **setup.sh** script is provided to configure autobench. Script will install required packages. It is recommended to review **setup.sh" script and, if possible, install it in a virtualbox VM, to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting url: http://ipaddress/AMIbench/index.php after setup is finished.
+Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
 
 ## Autobench Benchark Suite
-You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. For example:
-**compress-7zip** benchmark is installed and executed in two steps:
+You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
+
+Eexample: You can install and executed **compress-7zip** benchmark by running: 
   **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
   **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
 
