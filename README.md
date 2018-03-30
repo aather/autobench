@@ -26,7 +26,7 @@ AutoBench is built using open source phoronix test suite http://phoronix-test-su
 Type of benchmarks available:
 
 - **cpu benchmarks:** encode-mp3, ffmpeg, openssl, compress-7zip, sysbench-cpu, lmbench-mhz, kernel-build,
-- **memory benchmarks:** cachebench, stream, stream-singlecpu,sysbench-mem,lmbench-mem, lmbench-bw
+- **memory benchmarks:** cachebench, stream, stream-singlecpu, sysbench-mem, lmbench-mem, lmbench-bw
 - **SPECjvm2008 benchmarks:** scimark-fft-large, cryto-aes, derby, compress, mpegaudio ...
 
 ![Autobench](cpu-mem-benchmarks.png)
@@ -36,11 +36,11 @@ Phoronix test suite is also bundled with sensors or monitors for capturing usefu
 - **memory monitor:** memory usage
 - **storage monitor:** storage throughput 
 - **Linux perf and Flame Graph  monitors:** Linux perf metrics and flamegraph for highlighting hot cpu functions
-- **performance/cost monitor:** Calculate performance per dollar. You can replace dollar with other units like: cpu, memory etc..
+- **performance/cost monitor:** Calculates performance per dollar. One can replace dollar with other units like: cpu, memory etc..
 
 **Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
 
-All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories. For example:
+All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories, for example:
 - **cputests-openssl-190-i2-xlarge-LATEST:** Latest iteration of openssl cpu benchmark ran on AWS i2.xlarge instance 
 - **cputests-openssl-190-i2-xlarge-440-96-generic-201803291856:** All previous iterations of the same test ran on i2.xlarge instance with date stamp 
 
@@ -59,21 +59,21 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 **Caution:** Update autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
 
 For proper testing, I propose:
-- Set up few AWS instance types (medium,large,xlarge) from different families (m4,i3,t2..) 
-- Execute all benchmarks by running: /usr/share/phoronix.runtests
-- Run benchmarks multiple times in order to have few sets available to perform useful comparison 
-- Ideally, all instances should dump benchmark results to NFS mounted shared directory. Otherwise, copy all results into a common directory, /efs/autobench/test-results (default) on a webserver
-- Now edit '**config.ini**' file located in directory $WEBDIR/AMIbench. 
+- Set up few AWS instance types (medium,large,xlarge..) from different families (m4,i3,t2..) 
+- Execute all benchmarks by running: /usr/share/phoronix-runtests
+- Run benchmarks multiple times on each instance in order to have few sets available to perform useful comparison 
+- Ideally, all instances should dump benchmark results into NFS mounted shared directory. Otherwise, copy all results into a common directory on a webserver. Default directory is: /efs/autobench/test-results
+- To process results, edit '**config.ini**' file in directory $WEBDIR/AMIbench. 
 - Comment out (;) lines that do not apply.  For example:
-  - Comment out instance types that you have not tested. If you don't have multiple instance of same type (xl), then comment out all entries under "**instTypes to compare**" section since there is nothing to compare 
-  - Comment out instance families that you have not tested. If you have only one instance from each family, then
+  - Comment out instance types that are not tested. If you don't have multiple instances of the same type (xl), then comment out all entries under "**instTypes to compare**" section since there is nothing to compare 
+  - Comment out instance families that are not tested. If you only have one instance from each family, then
 comment out all entries under "**instFamily to compare**" section since there is nothing to compare
-  - Comment out instances that you did not test under the section **"InstRegression** 
+  - Comment out instances that are not tested under the section "**InstRegression**" 
   - There are two lines per benchmark test. comment out tests that you did not execute
 
-**Tip:** For quick update, consider using vi regex: **%s/family/;family/g** and then uncomment only entries that applies.
+**Tip:** For quick updating the file, consider using vi regex: **:%s/family/;family/g** and then uncomment entries that apply.
 
-Once "config.ini" file is setup, process benchmark results using cacheresults.php script located in dir: **$WEBDIR/AMIbench**
+Once "config.ini" file is setup, process benchmark results using "**cacheresults.php**" script located in dir: **$WEBDIR/AMIbench**
 
 ## Autobench Benchmark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
