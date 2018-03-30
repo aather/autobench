@@ -2,17 +2,17 @@
 
 ## AutoBench Features
 
-- Automate benchmarking when setup with CI/CD platform, like Netflix Spinnikar, AWS CodeDeploy.
-- Identify regression trends by comparing benchmark runs across previous releases. 
-- Compare performance of AWS cloud instance types and families.
-- Validate performance of OS. releases by running industry standard open source system benchmarks
-- Run SPECjvm2008 cpu intensive benchmarks to stress test various aspects of jvm or java applications
-- List AWS cloud instance hardware configuation and instance features with benchmark results
-- All instances dump benchmark results in shared directory (NFS) for ease of processing. Web server is also given access to the same shared directory   
-- Results are processed via cron job once a week with links updated to new results.
-- A single configuration file (config.ini) for controlling types of results to process
-- A single file that setup and execute all benchmarks
-- Updated benchmark results are accessed via autobench home page: http://IP_Address/AMIbench/index.php
+- Automates benchmark runs when setup via CI/CD platform, like Netflix Spinnikar, AWS CodeDeploy.
+- Identifies regression trends by comparing benchmark results with previous runs. 
+- Helps compare performance of AWS cloud instances within and across instance families.
+- Validates performance of OS. releases by running industry standard open source system benchmarks
+- Runs SPECjvm2008 cpu intensive benchmarks to stress test various aspects of jvm or java applications
+- Lists AWS cloud instance hardware configuation and instance features with benchmark results
+- Benchmark results are accumulated in a shared directory (NFS) for ease of processing
+- Results are aggregated and merged to allow comparison to be performed in a variety of ways.
+- A single file to setup and execute all benchmarks
+- A single configuration file (config.ini) for describing type of benchmark results to process
+- Web interface. Home page: http://IP_Address/AMIbench/index.php
 
 ## AutoBench Design
 AutoBench is built using open source phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use benchmarks, called **test profiles**, available for running standard benchmarks like: openssl, 7zip-compress, Stream etc.. Framework is extensible that allows easy integration of custom benchmarks. Test profiles are stored in directory:**/var/lib/phoronix-test-suite/test-profiles**. Each test profile is configured using four files listed below:
