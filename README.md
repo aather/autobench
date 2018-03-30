@@ -31,7 +31,7 @@ Type of benchmarks available:
 
 ![Autobench](cpu-mem-benchmarks.png)
 
-Phoronix test suite is bundled with sensors or monitors for capturing useful metrics during benchmark run:
+Phoronix test suite is also bundled with sensors or monitors for capturing useful metrics during benchmark run:
 - **cpu monitor:** cpu usage
 - **memory monitor:** memory usage
 - **storage monitor:** storage throughput 
@@ -58,7 +58,7 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 
 **Caution:** Update autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance
 
-## Autobench Benchark Suite
+## Autobench Benchmark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
 
 Example: To run a single benchmark, **compress-7zip**, do the following: 
@@ -68,14 +68,14 @@ Example: To run a single benchmark, **compress-7zip**, do the following:
 
 As mentioned earlier, all benchmarks are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run  above commands, tests will be installed in **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
 
-Type of benchmarks available:
-
-- **cpu benchmarks:** encode-mp3, ffmpeg, openssl, compress-7zip, sysbench-cpu, lmbench-mhz, kernel-build,
-- **memory benchmarks:** cachebench, stream, stream-singlecpu,sysbench-mem,lmbench-mem, lmbench-bw
-- **SPECjvm2008 benchmarks:** scimark-fft-large, cryto-aes, derby, compress, mpegaudio ...
-
 ## Autobench Reporting
 Autobench reporting is managed by **config.ini** file. All autobench scripts include **config.ini** file to customize web pages and to choose what benchmark results to aggregate and merge for comparison purposes. config file and php scripts are installed in directory: **/var/www/html/AMIbench**
 
 **cacheresults.php** can be run manually or via cron to process benchmark results specified in the **config.ini** file. Results are merged using phoronix utility. Graphs are generated via phpgraph library.
 
+- Compare AWS instances performance within the same family (m5,c4,d2,i3..)
+[!Autobench](instfamily.png)
+- Compare AWS instance types performance across AWS families(xlarge,2xlarge,4xlarge..)
+[!Autobench](instfamily.png)
+- Find regression trends by comparing benchmark results from multiple runs on the same instance (m4.2xl,c4.8xl..)
+[!Autobench](instregression.png)
