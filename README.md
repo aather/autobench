@@ -2,7 +2,7 @@
 
 ## AutoBench Features
 
-- Automates benchmark runs when setup via CI/CD platform, like Netflix Spinnaker, AWS CodeDeploy.
+- Automates benchmarking when setup via CI/CD platform, like Netflix Spinnaker, AWS CodeDeploy.
 - Identifies regression trends by comparing benchmark results with previous runs. 
 - Helps compare performance of AWS cloud instances within and across instance families.
 - Validates performance of OS. releases by running industry standard open source system benchmarks
