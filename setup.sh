@@ -14,10 +14,9 @@ REPORTS="$WEBDIR/AMIbench/test-reports"
 # Look for pattern: export RESULTS_DIR="/efs/autobench/test-results"
 #--------------------------------
 #
-# If you are not running in AWS cloud, then update the file:
-# /etc/autobench_environment.sh
-# uncomment line: #EC2_INSTANCE_TYPE="r3.xlarge" 
-# comment out line: EC2_INSTANCE_TYPE=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
+# If not running in AWS cloud, then update the file: /etc/autobench_environment.sh
+# In the file uncomment line: #EC2_INSTANCE_TYPE="r3.xlarge" 
+# In the filecomment out line: EC2_INSTANCE_TYPE=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
 #
 # install required packages
 sudo apt-get update
@@ -32,8 +31,10 @@ sudo apt-get -y install zip
 # required for specJVM2008 benchmarks
 sudo apt-get -y install openjdk-8-jdk 
 
+# If you have NFS server configured, then mount it under /efs directory to avoid updating additional files 
 # setup NFS directories for storing test results
-# sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone).fs-27e02e6e.efs.us-east-1.amazonaws.com: /efs
+# sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone).fs-xxxxxx.efs.us-east-1.amazonaws.com: /efs
+# For demo, we will just create a directory and dump results in it.
 sudo mkdir -p $RESULTS
 
 # setup apache server to serve the autobench reports: homepage: http:/IP-address/AMIBench/index.php
