@@ -30,7 +30,7 @@ Phoronix test suite is bundled with sensors or monitors for capturing useful met
 
 **Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
 
-All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories. For example directories:
+All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories. For example:
 - **cputests-openssl-190-i2-xlarge-LATEST:** Latest iteration of openssl cpu benchmark ran on AWS i2.xlarge instance 
 - **cputests-openssl-190-i2-xlarge-440-96-generic-201803291856:** All previous iterations of the same test ran on i2.xlarge instance with date stamp 
 
@@ -39,9 +39,10 @@ memory (memtests-stream..) and java (javatests-java-cryto..) benchmarks also use
 ## AutoBench Setup
 
 - $ git clone https://github.com/aather/autobench.git
-- $ cd autobench; ./setup.sh 
+- $ cd autobench; 
+- $ ./setup.sh 
 
-**setup.sh** Script installs all required packages and configure autobench environment. It is recommended to review **setup.sh" script and, if possible, install it in a virtualbox VM, to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting:
+**setup.sh** Script installs all required packages and configure autobench environment. There is not much error checking performed in setup.sh script. It's only purpose is to quickly setup a demo environment to play with it. I suggest reviewing **setup.sh" script and, if possible, clone autobench repository in a virtualbox VM to avoid accidently overwriting system configuration. Script **setup.sh** will also install sample test reports that can be viewed via web brower by visiting:
 
  **http://ipaddress/AMIbench/index.php**
 
@@ -52,10 +53,10 @@ You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run i
 
 Example: To run a single benchmark **compress-7zip**, do the following: 
 
-  **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
-  **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
+- **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
+- **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
 
-As mentioned earlier, all benchmarks are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run the above commands, tests will be installed in directory **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
+As mentioned earlier, all benchmarks are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run the above commands, tests will be installed in **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
 
 Type of benchmarks available:
 
