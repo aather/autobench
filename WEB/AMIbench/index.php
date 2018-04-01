@@ -189,7 +189,7 @@ HEAD;
 	<div class="col-xs-9">
 	<p><b><font color="blue">AutoBench</font></b> is a framework for running benchmarks and reporting results in an automated fashion. Autobench generated results are useful for comparing performance of various AWS cloud <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes" target="_blank">instances </a> and identifying regression trends across software releases.  
 <br>
-When setup via CI/CD platform, like Netflix Spinnaker, AWS CodeDeploy, benchmark can be executed in an automated fashion. Spinnaker deployment platform can be used to launche popular AWS instances whenever BaseAMI updated. Each instance launched runs standard cpu, memory, SPECjvm2008 benchmarks and dumps results into a shared <a href=https://aws.amazon.com/efs/faq/" target=_blank">EFS</a> (NFS) mounted directly. Cron job can be setup to process benchmark results.
+When setup via CI/CD platform, like Netflix Spinnaker, AWS CodeDeploy, benchmark can be executed in an automated fashion. Spinnaker deployment platform can be used to launche popular AWS instances whenever BaseAMI is updated. Each instance launched runs standard cpu, memory, SPECjvm2008 benchmarks and dumps results into a shared <a href=https://aws.amazon.com/efs/faq/" target=_blank">EFS</a> (NFS) mounted directly. Cron job can be setup to process benchmark results.
 <br>
 In addition to performance comparison and regression information, AWS instance features stored in <a href="https://sqlite.org/about.html" target="_blank">SQLite</a> database are also displayed.
      </div>
