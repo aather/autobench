@@ -17,16 +17,17 @@
 ![Autobench](homepage.png)
 
 ## AutoBench Design
-AutoBench is built using open source phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use benchmarks, called **test profiles**, available for running standard benchmarks like: openssl, 7zip-compress, Stream etc.. Framework is extensible that allows easy integration of custom benchmarks. Test profiles are stored in directory:**/var/lib/phoronix-test-suite/test-profiles**. Each test profile is configured using four files listed below:
-- **downloads.xml (optional):**  Download instructions for benchmark source code or binaries 
-- **install.sh:** Instructions on compiling, if required,  and installing benchmark 
-- **test-definition.xml:** Use for setting up benchmark profile such as:  number of iterations, build dependencies, test descritpion, default options, measurement unit, supported OS, version etc..
-- **results-definition.xml:** Benchmark output is filtered via unique pattern to fetch a key metric for reporting
+AutoBench is built using open source phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use standard benchmarks available like: openssl, 7zip-compress, Stream etc.. Framework is extensible and allows easy integration of custom benchmarks. Each benchmark is defined as a test profile, stored in directory:**/var/lib/phoronix-test-suite/test-profiles**, and have following four files:
+- **downloads.xml (optional):**  Download instructions for downloading source code or required packages 
+- **install.sh:** Instructions on compiling, if needed, and configuring benchmarks.  
+- **test-definition.xml:** benchmarks attributes such as: iterations, build dependencies, descritpion, measurement unit, supported OS, version, etc..
+- **results-definition.xml:** Benchmark output is filtered to fetch a key metric use for reporting results.
 
 Type of benchmarks available:
 
 - **cpu benchmarks:** encode-mp3, ffmpeg, openssl, compress-7zip, sysbench-cpu, lmbench-mhz, kernel-build,
 - **memory benchmarks:** cachebench, stream, stream-singlecpu, sysbench-mem, lmbench-mem, lmbench-bw
+- **Storage benchmarks:** 
 - **SPECjvm2008 benchmarks:** scimark-fft-large, cryto-aes, derby, compress, mpegaudio ...
 
 ![Autobench](cpu-mem-benchmarks.png)
