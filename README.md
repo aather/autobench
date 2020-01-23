@@ -15,7 +15,7 @@
 ![Autobench](homepage.png)
 
 ## AutoBench Design
-Benchmarks are configured and exected via phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use standard benchmarks available like: openssl, 7zip-compress, Stream etc.. One can also add customer benchmarks. Each benchmark configuration, called test profile, is stored in directory:**/var/lib/phoronix-test-suite/test-profiles**. To add a new benchmark update following files:
+Benchmarks are configured and exected via phoronix test suite http://phoronix-test-suite.com benchmarking framework. There are ready to use standard benchmarks available like: openssl, 7zip-compress, Stream etc.. One can also add customer benchmarks. Each benchmark configuration, called test profile, is stored in directory:**/var/lib/phoronix-test-suite/test-profiles**. Update files below when adding a new benchmarks:
 - **downloads.xml (optional):**  Download instructions for downloading source code or required packages 
 - **install.sh:** Instructions on compiling, if needed, and configuring benchmarks.  
 - **test-definition.xml:** benchmarks attributes such as: iterations, build dependencies, descritpion, measurement unit, supported OS, version, etc..
@@ -57,12 +57,12 @@ For proper testing, I propose:
 - Ideally, all instances should dump benchmark results into NFS mounted shared directory. Otherwise, copy all results into a common directory on a webserver. Default directory is: /efs/autobench/test-results
 - To process results, edit '**config.ini**' file in directory $WEBDIR/AMIbench. 
 - Comment out (;) lines that do not apply.  For example:
-  - Comment out instance types that are not tested. If you don't have more than one instance of the same type (xl) from different families then comment out all entries under "**instTypes to compare**" section since there is nothing to compare 
-  - Comment out instance families that are not tested. If you don't have more than one instance from each family, then comment out all entries under "**instFamily to compare**" section since there is nothing to compare.
+  - Comment out instance types that are not tested. If you don't have more than one instance of the same type (xl) from different AWS cloud families then comment out all entries under "**instTypes to compare**".
+  - Comment out instance families that are not tested. If you don't have more than one instance from each family, then comment out all entries under "**instFamily to compare**" section.
   - Comment out instances that are not tested under the section "**InstRegression**" 
-  - There are two lines per benchmark test. Comment out benchmark tests that you did not run
-  - Once "config.ini" file is setup, process benchmark results using "**cacheresults.php**" script located in dir: **$WEBDIR/AMIbench**
-  - You can now access updated results by visiting autobench home page: http://ip-address/AMIbench/index.php
+  - There are two lines per benchmark test. Comment out benchmark tests that you want skipping.
+  - Once "config.ini" file is setup, process benchmark results by running wrapper script, runall.sh. It will run all required scripts to generate reports located in dir: **$WEBDIR/AMIbench**
+  - Results can be displayed by visiting autobench home page: http://ip-address/AMIbench/index.php
 
 ## Autobench Benchmark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
@@ -72,16 +72,16 @@ Example: To run a single benchmark, for example: **compress-7zip**, do the follo
 - **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
 - **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
 
-As mentioned earlier, all benchmarks or test profiles are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run  above commands, tests will be installed in **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
+As mentioned earlier, all benchmarks or test profiles are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run  above commands, tests will be installed in **/usr/share/test-suites** directory as a bash script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
 
 ## Autobench Reporting
-Autobench reporting is managed by **config.ini** file. All autobench scripts include **config.ini** file to customize web pages and to choose what benchmark results to aggregate and merge for comparison purposes. config file and php scripts are installed in directory: **/var/www/html/AMIbench**
+Autobench reporting is managed by **config.ini** file. All autobench scripts include **config.ini** file to customize web report and to choose what results to merge for comparison purposes. config file and reporting scripts are located in directory: **/var/www/html/AMIbench**
 
 There are multiple scripts provided that process benchmark results:
-**regress_process_graphs.php**: aggregate all iterations of the same benchmarks with assoicated system metrics and generate graphs. 
-**prod_cacheresults.php**: graph and compare benchmarks results executed across various cloud instances
-**type_process_graphs.php**: graph and compare system usage of the benchmarks executed across various cloud instance **types**
-**family_procoess_graphs.php**: graph and compare system usage of benchmarks executed across various cloud instance **families**
+- **regress_process_graphs.php**: aggregate all iterations of the same benchmarks with assoicated system metrics and generate graphs. 
+- **prod_cacheresults.php**: graph and compare benchmarks results executed across various cloud instances
+- **type_process_graphs.php**: graph and compare system usage of the benchmarks executed across various cloud instance **types**
+- **family_procoess_graphs.php**: graph and compare system usage of benchmarks executed across various cloud instance **families**
 
 - Compare AWS instances performance within the same family (m5,c4,d2,i3..)
 ![Autobench](instfamily.png)
