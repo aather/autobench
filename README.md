@@ -32,14 +32,7 @@ Type of benchmarks available:
 
 ![Autobench](cpu-mem-benchmarks.png)
 
-Phoronix test suite is also bundled with sensors or monitors for capturing useful metrics during benchmark run:
-- **cpu monitor:** cpu usage
-- **memory monitor:** memory usage
-- **storage monitor:** storage throughput 
-- **Linux perf and Flame Graph  monitors:** Linux perf metrics and flamegraph for highlighting hot cpu functions
-- **performance/cost monitor:** Calculates performance per dollar. One can replace dollar with other units like: cpu, memory etc..
-
-**Documentation: https://www.phoronix-test-suite.com/documentation/phoronix-test-suite.html**
+System metrics (cpu, memory, io, net) are collected as wells as profiling data using linux perf. System usage are compared across cloud instances. Flamegraph and IPC/CPI (Instruction per cycle or cycles per instrunction) ar also reported with results. 
 
 All benchmarks are dumped into a shared NFS directory (prefered). Results are stored in seperate directories, for example:
 - **cputests-openssl-190-i2-xlarge-LATEST:** Latest iteration of openssl cpu benchmark ran on AWS i2.xlarge instance 
@@ -73,22 +66,24 @@ For proper testing, I propose:
   - Once "config.ini" file is setup, process benchmark results using "**cacheresults.php**" script located in dir: **$WEBDIR/AMIbench**
   - You can now access updated results by visiting autobench home page: http://ip-address/AMIbench/index.php
 
-**Tip:** For quick updating "config.ini" file, consider using vi regex: **:%s/family/;family/g** and then uncomment entries that apply.
-
 ## Autobench Benchmark Suite
 You can run all benchmarks by executing **/usr/share/phoronix.runtest** or run individually. Make sure to edit autobench environment file **/etc/autobench_environment.sh** if not running on a AWS cloud instance. 
 
-Example: To run a single benchmark, **compress-7zip**, do the following: 
+Example: To run a single benchmark, for example: **compress-7zip**, do the following: 
 
 - **$sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2**
 - **$sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2**
 
-As mentioned earlier, all benchmarks are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run  above commands, tests will be installed in **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
+As mentioned earlier, all benchmarks or test profiles are stored in **/var/lib/phoronix-test-suite/test-profiles**. When you run  above commands, tests will be installed in **/usr/share/test-suites** directory as a script and executed. Results are dumped in **/efs/autobench/test-results** (default) directory.
 
 ## Autobench Reporting
 Autobench reporting is managed by **config.ini** file. All autobench scripts include **config.ini** file to customize web pages and to choose what benchmark results to aggregate and merge for comparison purposes. config file and php scripts are installed in directory: **/var/www/html/AMIbench**
 
-**cacheresults.php** can be run manually or via cron to process benchmark results specified in the **config.ini** file. Results are merged using phoronix utility. Graphs are generated via phpgraph library.
+There are multiple scripts provided that process benchmark results:
+**regress_process_graphs.php**: aggregate all iterations of the same benchmarks with assoicated system metrics and generate graphs. 
+**prod_cacheresults.php**: graph and compare benchmarks results executed across various cloud instances
+**type_process_graphs.php**: graph and compare system usage of the benchmarks executed across various cloud instance **types**
+**family_procoess_graphs.php**: graph and compare system usage of benchmarks executed across various cloud instance **families**
 
 - Compare AWS instances performance within the same family (m5,c4,d2,i3..)
 ![Autobench](instfamily.png)
