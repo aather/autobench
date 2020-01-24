@@ -26,6 +26,7 @@ sudo apt-get -y install libapache2-mod-php php-mcrypt
 sudo apt-get -y install apache2 libapache2-mod-wsgi
 sudo apt-get -y install php-curl php-sqlite3
 sudo apt-get -y install php-gd
+sudo apt-get -y install jq 
 sudo apt-get -y install g++
 sudo apt-get -y install zip
 sudo apt-get -y install linux-tools  # linux perf package
@@ -35,7 +36,7 @@ sudo apt-get -y install openjdk-8-jdk
 # If you have NFS server configured, then mount it under /efs directory to avoid updating additional files 
 # setup NFS directories for storing test results
 # sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone).fs-xxxxxx.efs.us-east-1.amazonaws.com: /efs
-# For demo, we will just create a directory and dump results in it.
+# For demo, we will just create a directory /efs/autobenc/test-results and dump ready results in it.
 sudo mkdir -p $RESULTS
 
 # setup apache server to serve the autobench reports: homepage: http:/IP-address/AMIBench/index.php
