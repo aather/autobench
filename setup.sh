@@ -5,9 +5,9 @@ RESULTS="/efs/autobench/test-results"
 WEBDIR="/var/www/html"
 REPORTS="$WEBDIR/AMIbench/test-reports"
 #---------------------------------
-# All benchmark results should be dumped into shared NFS mounted directory 
+# Setting up NFS for dumping results and mounting on test system and web server will ease result processing
 # autobench is setup to dump benchmark results into a dir: /efs/autobench/test-results
-# If you decide to change the above directory path, update two files belows:
+# If you decide to change the default directory path, update two files belows:
 # /etc/phoronix.xml file
 # Look for pattern: <ResultsDirectory>/efs/autobench/test-results</ResultsDirectory>
 # /etc/autobench_environment.sh
@@ -16,7 +16,7 @@ REPORTS="$WEBDIR/AMIbench/test-reports"
 #
 # If not running in AWS cloud, then update the file: /etc/autobench_environment.sh
 # In the file uncomment line: #EC2_INSTANCE_TYPE="r3.xlarge" 
-# In the filecomment out line: EC2_INSTANCE_TYPE=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
+# In the file comment out line: EC2_INSTANCE_TYPE=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
 #
 # install required packages
 sudo apt-get update
@@ -28,6 +28,7 @@ sudo apt-get -y install php-curl php-sqlite3
 sudo apt-get -y install php-gd
 sudo apt-get -y install g++
 sudo apt-get -y install zip
+sudo apt-get -y install linux-tools  # linux perf package
 # required for specJVM2008 benchmarks
 sudo apt-get -y install openjdk-8-jdk 
 
@@ -58,11 +59,17 @@ sudo service apache2 restart
 sudo cp autobench_environment.sh /etc/autobench_environment.sh
 sudo cp phoronix-config/phoronix-test-suite.xml /etc/phoronix-test-suite.xml
 sudo cp phoronix-config/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-cputests
+sudo cp phoronix-config/collectStats.pl /usr/bin/collectStats.pl
+sudo cp phoronix-config/collectIPC.sh /usr/bin/collectIPC.sh
 sudo ln -s /usr/bin/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-memtests
 sudo ln -s /usr/bin/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-javatests
+sudo ln -s /usr/bin/phoronix-test-suite-cputests /usr/bin/phoronix-test-suite-iotests
 sudo cp phoronix-config/phoromatic-runtests.service /usr/share/phoromatic-runtests.service
 sudo cp phoronix-config/phoronix-runtests /usr/share/phoronix-runtests
 sudo cp -r phoronix-config/phoronix-test-suite/ /usr/share/phoronix-test-suite
+sudo cp -r phoronix-config/FlameGraph /usr/share/FlameGraph
+sudo cp -r phoronix-config/jmaps /usr/share/jmaps
+sudo cp -r phoronix-config/HeatMap /usr/share/HeatMap
 
 # To run SPECjvm2008 java benchmarks, download it from the url: https://www.spec.org/download.html 
 # Make sure to download into the same directory where this (setup.sh) script is located

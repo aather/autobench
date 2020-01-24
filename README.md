@@ -6,8 +6,8 @@
 - Reporting can also be automated by running it from the cron that generates fresh results and make it available via web
 - Identifies regression trends by comparing benchmark results 
 - Helps compare performance of AWS cloud instances within and across families and types.
-- Run industry standard system, jvm as well as customer benchmarks
-- All benchmark results are dumped into a shared directory (NFS) for ease of processing, mounted on cloud instances.
+- Run industry standard system, JVM and custom benchmarks
+- All benchmark results are dumped into a shared directory (NFS) for ease of processing.
 - Results are aggregated and merged to report performance differences across cloud families and types.
 - A single file to execute benchmarks and process results.
 - Reporting part generates all web pages and graphs and make them available at Home page: **http://ipaddress/AMIbench/index.php**
@@ -85,7 +85,16 @@ There are multiple scripts provided that process benchmark results:
 
 - Compare AWS instances performance within the same family (m5,c4,d2,i3..)
 ![Autobench](instfamily.png)
-- Compare AWS instance types performance across AWS families(xlarge,2xlarge,4xlarge..)
-![Autobench](instfamily.png)
+- Compare AWS instance resource usage (cpu,mem,io,net) while running benchmarks within AWS family(xlarge,2xlarge,4xlarge..)
+![Autobench](cpu_usage_family.png)
+- Compare AWS instance types performance across AWS families(c5.xlarge,m5.xlarge,i3.xlarge..)
+![Autobench](insttypes.png)
+- Compare same instance type resource usage (cpu,mem,io,net) while running benchmarks, across AWS families(c5.xlarge,m5.xlarge,i3.xlarge..)
+![Autobench](cpu_usage_type.png)
 - Find regression trends by comparing benchmark results from multiple runs on the same instance (m4.2xl,c4.8xl..)
 ![Autobench](instregression.png)
+- Find regression trends in resource usage (cpu,mem,io,net) across all benchmarks for a given instance type, example: r5.4xl
+![Autobench](cpu.png)
+- Find regression trends by reviewing profiling data captured via Linux perf. Hot stacks are aggregated and displayed as SVG via flamegraph for a given instance type, example: r5.4xl
+![Autobench](flamegraph.png)
+
