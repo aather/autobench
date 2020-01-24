@@ -5,7 +5,7 @@
     <OutputTemplate>Build Duration: #_RESULT_# seconds
  </OutputTemplate> 
     <LineHint>Duration:</LineHint> 
-    <ResultScale>kernel build time (seconds)</ResultScale>
+    <ResultScale>seconds</ResultScale>
     <StripFromResult>s</StripFromResult>
   </ResultsParser>
 </PhoronixTestSuite>

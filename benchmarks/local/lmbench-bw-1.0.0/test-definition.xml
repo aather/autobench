@@ -4,6 +4,7 @@
   <TestInformation>
     <Title>Memory Bandwidth Test</Title>
     <Description>This benchmark tests the system memory throughput</Description>
+    <ResultScale>MB/s</ResultScale>
     <Proportion>HIB</Proportion>
     <DisplayFormat>LINE_GRAPH</DisplayFormat>
     <SubTitle>lmbench - memory bandwidth benchmark</SubTitle>

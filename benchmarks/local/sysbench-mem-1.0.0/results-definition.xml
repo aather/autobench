@@ -2,7 +2,8 @@
 <!--Phoronix Test Suite v6.6.0m2-->
 <PhoronixTestSuite>
   <ResultsParser>
-    <OutputTemplate>Operations performed: 104857600 (#_RESULT_# ops/sec) </OutputTemplate>
-    <LineHint>Operations performed:</LineHint> 
+    <OutputTemplate>Total operations: 284562 (#_RESULT_# per second) </OutputTemplate>
+    <LineHint>Total operations:</LineHint> 
+    <ResultScale>ops/sec</ResultScale>
   </ResultsParser>
 </PhoronixTestSuite>

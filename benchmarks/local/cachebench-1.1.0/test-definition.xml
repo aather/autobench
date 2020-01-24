@@ -4,7 +4,7 @@
   <TestInformation>
     <Title>CacheBench</Title>
     <Description>This is a performance test of CacheBench, which is part of LLCbench. CacheBench is designed to test the memory and cache bandwidth performance</Description>
-    <ResultScale>Memory tput (MB/s)</ResultScale>
+    <ResultScale>MB/s</ResultScale>
     <Proportion>HIB</Proportion>
     <TimesToRun>3</TimesToRun>
   </TestInformation>

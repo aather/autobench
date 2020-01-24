@@ -4,6 +4,6 @@
   <ResultsParser>
    <OutputTemplate>2621.44 #_RESULT_# Memory:</OutputTemplate>
     <LineHint>Memory:</LineHint>
-    <ResultScale>Memory tput (MB/s)</ResultScale>
+    <ResultScale>MB/s</ResultScale>
   </ResultsParser>
 </PhoronixTestSuite>

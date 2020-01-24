@@ -4,7 +4,7 @@
   <TestInformation>
     <Title>Memory Operations Per Second Test </Title>
     <Description>This benchmark tests memory Operations Per Second (ops) </Description>
-    <ResultScale>operation/seconds(ops)</ResultScale>
+    <ResultScale>ops/sec</ResultScale>
     <Proportion>HIB</Proportion>
     <DisplayFormat>LINE_GRAPH</DisplayFormat>
     <SubTitle>sysbench - Memory ops benchmark</SubTitle>

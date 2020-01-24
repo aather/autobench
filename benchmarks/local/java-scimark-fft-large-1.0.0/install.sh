@@ -1,9 +1,9 @@
 #!/bin/sh
-#java -jar /efs/SPECJVM2008/SPECjvm2008_1_01_setup.jar -i silent
+java -jar /efs/SPECJVM2008/SPECjvm2008_1_01_setup.jar -i silent
 echo \$? > ~/install-exit-status
 echo "#!/bin/sh
 cd /SPECjvm2008
-java -jar SPECjvm2008.jar -ikv -wt 5s -it 240s scimark.fft.large > \$LOG_FILE 2>&1
+java -XX:+PreserveFramePointer -jar SPECjvm2008.jar -ikv -wt 5s -it 60s scimark.fft.large > \$LOG_FILE 2>&1
 echo \$? > ~/test-exit-status" > java-scimark-fft-large
 chmod +x java-scimark-fft-large
 

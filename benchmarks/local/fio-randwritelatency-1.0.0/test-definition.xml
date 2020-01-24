@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v6.6.0m2-->
+<PhoronixTestSuite>
+  <TestInformation>
+    <Title>FIO storage random write (fsync=20)  mean io latency test - blksize: 16 KB</Title>
+    <Description>This benchmark reports random write (fsync=20) mean io latency</Description>
+    <ResultScale>microseconds</ResultScale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>LINE_GRAPH</DisplayFormat>
+    <SubTitle>Random write (fsync=20) mean io latency benchmark - blksize:16 KB</SubTitle>
+    <TimesToRun>2</TimesToRun>
+  </TestInformation>
+  <TestProfile>
+    <Version>1.0.0</Version>
+    <SupportedPlatforms>Linux</SupportedPlatforms>
+    <SoftwareType>Utility</SoftwareType>
+    <TestType>io</TestType>
+    <License>Free</License>
+    <Status>Verified</Status>
+    <EnvironmentSize>1.0</EnvironmentSize>
+    <ProjectURL>https://media.readthedocs.org/pdf/fio/latest/fio.pdf</ProjectURL>
+    <Maintainer>Amer Ather</Maintainer>
+  </TestProfile>
+</PhoronixTestSuite>

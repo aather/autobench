@@ -4,6 +4,7 @@
   <TestInformation>
     <Title>CPU Performance Test</Title>
     <Description>This benchmark tests Linux kernel build time of Linux-4.9.10</Description>
+    <ResultScale>seconds</ResultScale>
     <Proportion>LIB</Proportion>
     <DisplayFormat>LINE_GRAPH</DisplayFormat>
     <SubTitle>Linux kernel build benchmark</SubTitle>

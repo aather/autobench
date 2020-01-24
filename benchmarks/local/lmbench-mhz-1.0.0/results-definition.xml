@@ -2,7 +2,7 @@
 <!--Phoronix Test Suite v6.6.0m2-->
 <PhoronixTestSuite>
   <ResultsParser>
-    <OutputTemplate>#_RESULT_# MHz, 0.3761 nanosec clock </OutputTemplate>
+    <OutputTemplate>MHZ #_RESULT_# MHz, 0.3761 nanosec clock </OutputTemplate>
     <LineHint>nanosec clock</LineHint> 
   </ResultsParser>
 </PhoronixTestSuite>

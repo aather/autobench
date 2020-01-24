@@ -1,6 +1,7 @@
 #!/bin/sh
 
-tar -jxf stream-2013-01-17.tar.bz2
+export OMP_NUM_THREADS=\$NUM_CPU_CORES
+tar-jxf stream-2013-01-17.tar.bz2
 
 if [ "X$CFLAGS_OVERRIDE" = "X" ]
 then
@@ -14,6 +15,7 @@ gcc -O2 -mcmodel=medium -DSTREAM_ARRAY_SIZE=536870912 stream.c -o stream-bin
 echo \$? > ~/install-exit-status
 
 echo "#!/bin/sh
-sudo numactl --physcpubind=2 --interleave=all ./stream-bin > \$LOG_FILE 2>&1
+#sudo numactl --physcpubind=2 --interleave=all ./stream-bin > \$LOG_FILE 2>&1
+./stream-bin > \$LOG_FILE 2>&1
 echo \$? > ~/test-exit-status" > stream-singlecpu
 chmod +x stream-singlecpu

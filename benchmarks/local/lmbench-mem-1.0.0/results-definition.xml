@@ -2,27 +2,9 @@
 <!--Phoronix Test Suite v6.6.0m2-->
 <PhoronixTestSuite>
   <ResultsParser>
-   <OutputTemplate>0.00391 #_RESULT_# 0.12500 4.471 3.00000 4.589 512.00000 10.664 Memory:</OutputTemplate>
+   <OutputTemplate>512.00000 #_RESULT_# Memory:</OutputTemplate>
     <LineHint>Memory:</LineHint>
-    <ResultScale>L1-cache (ns)</ResultScale>
-    <ResultProportion>LIB</ResultProportion>
-  </ResultsParser>
-  <ResultsParser>
-   <OutputTemplate>0.00391 1.497 0.12500 #_RESULT_# 3.00000 4.589 512.00000 10.664 Memory:</OutputTemplate>
-    <LineHint>Memory:</LineHint>
-    <ResultScale>L2-cache (ns)</ResultScale>
-    <ResultProportion>LIB</ResultProportion>
-  </ResultsParser>
-  <ResultsParser>
-   <OutputTemplate>0.00391 1.508 0.12500 4.554 3.00000 #_RESULT_# 512.00000 10.657 Memory:</OutputTemplate>
-    <LineHint>Memory:</LineHint>
-    <ResultScale>L3-cache (ns)</ResultScale>
-    <ResultProportion>LIB</ResultProportion>
-  </ResultsParser>
-  <ResultsParser>
-   <OutputTemplate>0.00391 1.508 0.12500 4.554 3.00000 4.659 512.00000 #_RESULT_# Memory:</OutputTemplate>
-    <LineHint>Memory:</LineHint>
-    <ResultScale>Memory (ns)</ResultScale>
+    <ResultScale>ns</ResultScale>
     <ResultProportion>LIB</ResultProportion>
   </ResultsParser>
 </PhoronixTestSuite>

@@ -4,6 +4,7 @@
   <TestInformation>
     <Title>Memory Latency Test</Title>
     <Description>This benchmark tests the system memory (RAM) latency.</Description>
+    <ResultScale>ns</ResultScale>
     <Proportion>LIB</Proportion>
     <DisplayFormat>LINE_GRAPH</DisplayFormat>
     <SubTitle>lmbench - memory latency benchmark</SubTitle>
