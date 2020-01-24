@@ -238,9 +238,43 @@ fi
 # my customization
 if [ "$1" != "install" ]
 then
- sudo cp $DIR/index.html $DIR/result.html
+ kill `pgrep collectStats` >/dev/null 2>&1
+ kill `pgrep collectIPC` >/dev/null 2>&1
+ kill `pgrep perf` > /dev/null 2>&1
+ sleep 10
  sudo php /usr/share/phoronix-test-suite/pts-core/phoronix-test-suite.php result-file-to-json $TEST_RESULTS_NAME > $DIR/result.json
  sudo php /usr/share/phoronix-test-suite/pts-core/phoronix-test-suite.php result-file-to-csv $TEST_RESULTS_NAME > $DIR/result.csv
- sudo php /usr/share/phoronix-test-suite/pts-core/phoronix-test-suite.php result-file-to-text $TEST_RESULTS_NAME > $DIR/result.txt
+-------
+ if [ $0 = "/usr/bin/phoronix-test-suite-iotests" ]
+ then
+  perf script -i /tmp/PERF.data --header > $DIR/blkio
+  perf script -i /tmp/PERF.data --header > /tmp/blkio
+  awk '{ gsub(/:/, "") } $5 ~ /issue/ { ts[$6, $10] = $4 } $5 ~ /complete/ { if (l = ts[$6, $9]) { printf "%.f %.f\n", $4 * 1000000, ($4 - l) * 1000000; ts[$6, $10] = 0 } }' /tmp/blkio > /tmp/blkio_lat_us
+ /usr/share/HeatMap/trace2heatmap.pl --unitstime=us --unitslabel=us --grid --maxlat=50000 --title="Latency Heat Map: 50ms max" /tmp/blkio_lat_us > $DIR/flamegraph.svg
+  sudo rm /tmp/blkio
+  sudo rm /tmp/PERF.data
+ else
+  perf script -i /tmp/PERF.data --header > $DIR/stacks
+  perf script -i /tmp/PERF.data --header > /tmp/stacks
+  cat /tmp/stacks | /usr/share/FlameGraph/stackcollapse-perf.pl | grep -v 'cpu_*idle' | /usr/share/FlameGraph/flamegraph.pl --color=java --hash > $DIR/flamegraph.svg
+  sudo rm /tmp/stacks
+  sudo rm /tmp/PERF.data
+ fi
+ sudo rm -rf $DIR/result-graphs
+ sudo rm $DIR/composite.xml
+ sudo rm $DIR/index.html
+ BASE_AMI_ID=`hostnamectl|grep Operating|awk '{print $3 "-" $4 "-" $5}'`
+ Java_version=`java -version 2>&1|grep version|sed 's/"//g'|awk '{print $1 "-" $3}'`
+ BASE_AMI_Version=`hostnamectl|grep Kernel|awk '{print $2 "-" $3}'`
+
+ echo "{" >> $DIR/extra.json
+ echo "\"date\": \"$(date +%D)\"," >> $DIR/extra.json
+ echo "\"ami\": $BASE_AMI_ID, " >> $DIR/extra.json
+ echo "\"version\": \"$BASE_AMI_Version\", " >> $DIR/extra.json
+ echo "\"javaVersion\": \"$Java_version\" "  >> $DIR/extra.json
+ echo "}" >> $DIR/extra.json
+ #
+ /usr/bin/jq --slurp . $DIR/result.json $DIR/extra.json > $DIR/combine.json
  sudo cp -r $DIR/* $LDIR
+ sudo cp $LDIR/metrics.csv $DIR
 fi

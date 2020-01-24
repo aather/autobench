@@ -1,153 +1,152 @@
 #!/bin/bash
+# log stdout/stderr as well as the bash execution trace for this script to LOG_DIR
+readonly LOG_DIR=/var/log/phornix-runtests
+printf -v LOG_NAME 'phoronix-runtests.%(%Y%m%d%H%M%S)T' -1
+readonly LOG_NAME
+readonly LOG_FILE="${LOG_DIR}/${LOG_NAME}.log"
+readonly TRACE_FILE="${LOG_DIR}/${LOG_NAME}.trc"
+if [[ ! -d ${LOG_DIR} ]]; then
+    mkdir -p "${LOG_DIR}"
+fi
 
+# set up execution trace
+export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+exec {BASH_XTRACEFD}>>"${TRACE_FILE}"
+set -x
+# steer stdout/stderr to the log file
+exec &>> >(tee -a "${LOG_FILE}")
 # CPU TESTS
-sudo /usr/bin/phoronix-test-suite-cputests install Test pts/encode-mp3-1.5.0
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/encode-mp3-1.5.0
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test pts/encode-mp3-1.5.0
+/usr/bin/phoronix-test-suite-cputests batch-run Test pts/encode-mp3-1.5.0
 #
-sudo /usr/bin/phoronix-test-suite-cputests install Test pts/ffmpeg-2.5.0
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/ffmpeg-2.5.0
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test pts/ffmpeg-2.5.0
+/usr/bin/phoronix-test-suite-cputests batch-run Test pts/ffmpeg-2.5.0
 #
-sudo /usr/bin/phoronix-test-suite-cputests install Test pts/openssl-1.9.0
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/openssl-1.9.0
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test pts/openssl-1.9.0
+/usr/bin/phoronix-test-suite-cputests batch-run Test pts/openssl-1.9.0
 #
-sudo /usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test pts/compress-7zip-1.6.2
+/usr/bin/phoronix-test-suite-cputests batch-run Test pts/compress-7zip-1.6.2
 #
-sudo /usr/bin/phoronix-test-suite-cputests install Test local/sysbench-cpu-1.0.0
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test local/sysbench-cpu-1.0.0
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test local/sysbench-cpu-1.0.0
+/usr/bin/phoronix-test-suite-cputests batch-run Test local/sysbench-cpu-1.0.0
 #
-sudo /usr/bin/phoronix-test-suite-cputests install Test local/lmbench-mhz-1.0.0
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test local/lmbench-mhz-1.0.0
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test local/lmbench-mhz-1.0.0
+/usr/bin/phoronix-test-suite-cputests batch-run Test local/lmbench-mhz-1.0.0
 #
-sudo /usr/bin/phoronix-test-suite-cputests install Test local/kernel-build-1.0.0
-sudo /usr/bin/phoronix-test-suite-cputests batch-run Test local/kernel-build-1.0.0
-sleep 5
+/usr/bin/phoronix-test-suite-cputests install Test local/kernel-build-1.0.0
+/usr/bin/phoronix-test-suite-cputests batch-run Test local/kernel-build-1.0.0
 
 # MEM TESTS
-sudo /usr/bin/phoronix-test-suite-memtests install Test local/cachebench-1.1.0
-sudo /usr/bin/phoronix-test-suite-memtests batch-run Test local/cachebench-1.1.0
-sleep 5
+/usr/bin/phoronix-test-suite-memtests install Test local/cachebench-1.1.0
+/usr/bin/phoronix-test-suite-memtests batch-run Test local/cachebench-1.1.0
 #
-sudo /usr/bin/phoronix-test-suite-memtests install Test pts/stream-1.3.1
-sudo /usr/bin/phoronix-test-suite-memtests batch-run Test pts/stream-1.3.1
-sleep 5
+/usr/bin/phoronix-test-suite-memtests install Test pts/stream-1.3.1
+/usr/bin/phoronix-test-suite-memtests batch-run Test pts/stream-1.3.1
 #
-sudo /usr/bin/phoronix-test-suite-memtests install Test local/stream-singlecpu-1.3.1
-sudo /usr/bin/phoronix-test-suite-memtests batch-run Test local/stream-singlecpu-1.3.1
-sleep 5
+/usr/bin/phoronix-test-suite-memtests install Test local/stream-singlecpu-1.3.1
+/usr/bin/phoronix-test-suite-memtests batch-run Test local/stream-singlecpu-1.3.1
 #
-sudo /usr/bin/phoronix-test-suite-memtests install Test local/sysbench-mem-1.0.0
-sudo /usr/bin/phoronix-test-suite-memtests batch-run Test local/sysbench-mem-1.0.0
-sleep 5
+/usr/bin/phoronix-test-suite-memtests install Test local/sysbench-mem-1.0.0
+/usr/bin/phoronix-test-suite-memtests batch-run Test local/sysbench-mem-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-memtests install Test local/sysbench-mutex-1.0.0
-#sudo /usr/bin/phoronix-test-suite-memtests batch-run Test local/sysbench-mutex-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-memtests install Test local/sysbench-mutex-1.0.0
+/usr/bin/phoronix-test-suite-memtests batch-run Test local/sysbench-mutex-1.0.0
 #
-sudo /usr/bin/phoronix-test-suite-memtests install Test local/lmbench-mem-1.0.0
-sudo /usr/bin/phoronix-test-suite-memtests batch-run Test local/lmbench-mem-1.0.0
-sleep 5
+/usr/bin/phoronix-test-suite-memtests install Test local/lmbench-mem-1.0.0
+/usr/bin/phoronix-test-suite-memtests batch-run Test local/lmbench-mem-1.0.0
 #
-sudo /usr/bin/phoronix-test-suite-memtests install Test local/lmbench-bw-1.0.0
-sudo /usr/bin/phoronix-test-suite-memtests batch-run Test local/lmbench-bw-1.0.0
-sleep 5
-# 
-## To run SPECjvm2008 java benchmarks, download it from the url: https://www.spec.org/download.html
-# Run the command below to install SPECjvm2008. It will be installed in root /specJVM2008 directory
-# sudo java -jar SPECjvm2008_1_01_setup.jar -i silent
-# Uncomment all SPECjvm2008 benchmarks after installing SPECjvm2008 binary
+/usr/bin/phoronix-test-suite-memtests install Test local/lmbench-bw-1.0.0
+/usr/bin/phoronix-test-suite-memtests batch-run Test local/lmbench-bw-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-fft-large-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-fft-large-1.0.0
-#sleep 5
+# JAVA TESTS
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-fft-large-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-fft-large-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-lu-large-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-lu-large-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-lu-large-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-lu-large-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sor-large-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sor-large-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sor-large-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sor-large-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sparse-large-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sparse-large-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sparse-large-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sparse-large-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-fft-small-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-fft-small-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-fft-small-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-fft-small-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-lu-small-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-lu-small-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-lu-small-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-lu-small-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sor-small-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sor-small-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sor-small-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sor-small-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sparse-small-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sparse-small-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-sparse-small-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-sparse-small-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-monte-carlo-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-monte-carlo-1.0.0
-#sleep 5
-# JAVA cryto tests
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-crypto-aes-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-crypto-aes-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-scimark-monte-carlo-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-scimark-monte-carlo-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-crypto-rsa-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-crypto-rsa-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-crypto-aes-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-crypto-aes-1.0.0
 #
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-crypto-signverify-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-crypto-signverify-1.0.0
-#sleep 5
-# JAVA Compiler
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-compiler-compiler-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-compiler-compiler-1.0.0
-#sleep 5
-# Too much memory allocation resulting in failure to execute
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-compiler-sunflow-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-compiler-sunflow-1.0.0
-#sleep 5
-# JAVA derby
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-derby-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-derby-1.0.0
-#sleep 5
-# java compress
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-compress-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-compress-1.0.0
-#sleep 5
-# java mpegaudio
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-mpegaudio-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-mpegaudio-1.0.0
-#sleep 5
-# java serial
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-serial-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-serial-1.0.0
-#sleep 5
-# java sunflow
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-sunflow-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-sunflow-1.0.0
-#sleep 5
-# java xml
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-xml-transform-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-xml-transform-1.0.0
-#sleep 5
-# 
-#sudo /usr/bin/phoronix-test-suite-javatests install Test local/java-xml-validation-1.0.0
-#sudo /usr/bin/phoronix-test-suite-javatests batch-run Test local/java-xml-validation-1.0.0
-#sleep 5
+/usr/bin/phoronix-test-suite-javatests install Test local/java-crypto-rsa-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-crypto-rsa-1.0.0
 #
+/usr/bin/phoronix-test-suite-javatests install Test local/java-crypto-signverify-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-crypto-signverify-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-compiler-compiler-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-compiler-compiler-1.0.0
 
-# App Tests
-#sudo /usr/bin/phoronix-test-suite-apps install Test local/sysbench-mysql-0.4.12
-#sudo /usr/bin/phoronix-test-suite-apps batch-run Test local/sysbench-mysql-0.4.12
+# Too much memory allocation resulting in failure to execute. Skipping this test
+#/usr/bin/phoronix-test-suite-javatests install Test local/java-compiler-sunflow-1.0.0
+#/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-compiler-sunflow-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-derby-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-derby-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-compress-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-compress-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-mpegaudio-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-mpegaudio-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-serial-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-serial-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-sunflow-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-sunflow-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-xml-transform-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-xml-transform-1.0.0
+#
+/usr/bin/phoronix-test-suite-javatests install Test local/java-xml-validation-1.0.0
+/usr/bin/phoronix-test-suite-javatests batch-run Test local/java-xml-validation-1.0.0
+#
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-randread-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-randread-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-seqread-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-seqread-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-randwrite-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-randwrite-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-seqwrite-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-seqwrite-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-randmixed-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-randmixed-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-seqmixed-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-seqmixed-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-randreadlatency-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-randreadlatency-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-randwritelatency-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-randwritelatency-1.0.0
+
+/usr/bin/phoronix-test-suite-iotests install Test local/fio-randmixedlatency-1.0.0
+/usr/bin/phoronix-test-suite-iotests batch-run Test local/fio-randmixedlatency-1.0.0
